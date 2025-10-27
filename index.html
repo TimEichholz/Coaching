@@ -130,22 +130,33 @@ footer a{color:#cfe0ff}
     </div>
   </header>
 
-  <!-- Hero -->
- <section class="hero" style="height:900px;">
-    <div class="bg">
-      <img src="ruecken.jpg"
-     alt="Hero Bild – Rückansicht Bodybuilding"
-     style="width:100%; height:100%; object-fit:cover; object-position:50% 30%;">
+ <!-- Hero -->
+<section class="hero" style="height:90vh; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:white;">
+  <div class="bg">
+    <img src="ruecken.jpg" 
+         alt="Tim Eichholz – Rückansicht Bodybuilding" 
+         style="width:100%; height:100%; object-fit:cover; object-position:50% 30%;">
+  </div>
+
+  <!-- Halbtransparentes Overlay für bessere Lesbarkeit -->
+  <div style="position:absolute; inset:0; background:linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.3)); z-index:1;"></div>
+
+  <div class="container" style="position:relative; z-index:2; max-width:900px; padding:0 20px;">
+    <h1 style="font-size:clamp(36px,5vw,56px); line-height:1.2; font-weight:700; margin-bottom:20px;">
+      Der Weg zu deinem <span style="color:var(--brand2);">Traumkörper</span>
+    </h1>
+
+    <p style="font-size:20px; color:#e2e8f0; max-width:680px; margin:0 auto 32px;">
+      Individuelles Personal Training, Ernährung & Coaching – für deine stärkste, gesündeste Version.
+    </p>
+
+    <div class="flex center gap-3" style="justify-content:center; flex-wrap:wrap;">
+      <a class="btn" href="#kontakt" style="padding:1rem 1.5rem; font-size:18px;">Jetzt Termin anfragen</a>
+      <a href="#leistungen" class="btn secondary" style="padding:1rem 1.5rem; font-size:18px;">Leistungen ansehen →</a>
     </div>
-    <div class="container" style="padding:72px 0 88px;max-width:920px">
-      <h1> Der Weg zu deinem <span style="color:var(--brand)"> Traumkörper </span></h1>
-      <p class="muted" style="margin-top:12px;font-size:18px">PLATZHALTER: Kurzer Claim Ihrer Praxis – evidenzbasiert, persönlich, zielorientiert.</p>
-      <div class="flex gap-3" style="margin-top:16px;flex-wrap:wrap">
-        <a class="btn" href="#kontakt">Jetzt Termin anfragen</a>
-        <a class="flex center gap-2" href="#leistungen" style="font-weight:600">Leistungen ansehen →</a>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Vorteile -->
   <section class="section" style="background:#f8fafc;border-block:1px solid var(--line)">
@@ -159,6 +170,7 @@ footer a{color:#cfe0ff}
 
   <!-- Leistungen -->
   <section id="leistungen" class="section">
+  <section id="team" class="section alt">   
     <div class="container">
       <h2>Unsere Leistungen</h2>
       <p class="muted" style="margin-top:6px;max-width:720px">PLATZHALTER: Überblick über Ihr Spektrum. Hinweise zu Rezeptarten und Dauer.</p>
