@@ -33,6 +33,21 @@
     footer{border-top:1px solid var(--line);background:#fff}
     .sm{font-size:14px}.xs{font-size:12px;color:#64748b}
     @media (max-width:768px){nav{display:none}}
+
+    /* Team-Layout & Animation */
+.team-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:32px;align-items:center}
+@media (max-width:900px){.team-wrap{grid-template-columns:1fr}}
+.fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease-out forwards}
+.fade-up.delay-1{animation-delay:.15s}
+.fade-up.delay-2{animation-delay:.3s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+.prose p{margin:0 0 14px}
+.prose .lead{font-size:18px;line-height:1.6;color:var(--text)}
+.prose .muted{color:var(--muted);font-size:16px}
+.profile-img{width:100%;height:520px;object-fit:cover;display:block}
+@media (max-width:900px){.profile-img{height:380px}}
+
   </style>
 </head>
 <body>
@@ -107,27 +122,67 @@
     </div>
   </section>
 
-  <!-- Team -->
-  <section id="team" class="section" style="background:#f8fafc;border-block:1px solid var(--line)">
-    <div class="container">
-      <h2>Über mich - mein Weg zur Leidenschaft Bodybuilding</h2>
-      <p class="muted" style="margin-top:6px;max-width:720px">PLATZHALTER: Kurzinfo zum Team, Ansatz & Behandlungsphilosophie.</p>
-      <div class="grid grid-3" style="margin-top:24px">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=60" alt="">
-          <div class="p"><h3>Vorname Nachname</h3><div class="xs">Physiotherapeut:in, Inhaber:in</div><p class="muted">PLATZHALTER: Kurzprofil.</p></div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=800&q=60" alt="">
-          <div class="p"><h3>Vorname Nachname</h3><div class="xs">Physiotherapeut:in</div><p class="muted">PLATZHALTER: Fortbildungen.</p></div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=800&q=60" alt="">
-          <div class="p"><h3>Vorname Nachname</h3><div class="xs">Rezeption / Organisation</div><p class="muted">PLATZHALTER: Terminvergabe & Abrechnung.</p></div>
+<!-- Team -->
+<section id="team" class="section" style="background:#f8fafc;border-block:1px solid var(--line)">
+  <div class="container">
+    <h2>Über mich – mein Weg zur Leidenschaft Bodybuilding</h2>
+
+    <div class="team-wrap" style="margin-top:24px">
+      <!-- Vorstellung (Bild + Name) -->
+      <div class="card fade-up">
+        <img src="Pose4.jpeg" alt="Tim Eichholz – Bühnenpose" class="profile-img">
+        <div class="p">
+          <h3 style="margin:0">Tim Eichholz</h3>
+          <div class="xs">Personal Training &amp; Coaching</div>
         </div>
       </div>
+
+      <!-- Text – edel & sauber eingeblendet -->
+      <div class="prose fade-up delay-1">
+        <p class="lead">
+          Hey, ich freue mich, dass du den Weg auf meine Website gefunden hast. In diesem Text möchte ich dir
+          einen Einblick in meine Geschichte geben – wie der Sport mein Leben verändert hat und warum ich heute
+          Menschen dabei helfe, ihre beste Version zu werden.
+        </p>
+        <p class="muted">
+          Schon als kleiner Junge war Sport ein Teil meines Lebens – ob Fußball, Lauftraining oder Triathlon.
+          Doch nichts davon hat mich wirklich erfüllt. Das änderte sich, als mein Vater mir eines Tages meine
+          ersten Bodybuilding-Magazine vom Kiosk mitbrachte. In diesem Moment wurde ein Feuer in mir entfacht.
+          Plötzlich hatte ich ein Ziel, eine Richtung. Ich begann zuerst zuhause zu trainieren, meldete mich
+          später mit meinem Vater im Fitnessstudio an und schrieb sogar meine Projektarbeit in der Schule über Bodybuilding.
+        </p>
+        <p class="muted">
+          Doch das Leben stellt uns manchmal vor harte Prüfungen. Mit 16 hatte ich einen schweren Motorradunfall.
+          Zwei Operationen, lange Ausfallzeit – mein Körper baute ab, und ich verlor das Gefühl für mich selbst.
+          Als ich nach zwei Jahren Reha wieder in den Spiegel sah, erkannte ich mich kaum wieder. Es war einer
+          der schwersten Momente meines Lebens.
+        </p>
+        <p class="muted">
+          Zum Glück gab es einen Freund, der mich nicht aufgeben ließ. Er nahm mich mit zum Boxen und holte mich
+          zurück in die Welt des Sports. Dort habe ich eine wichtige Lektion gelernt: Es ist egal, wie oft du fällst –
+          entscheidend ist, dass du wieder aufstehst.
+        </p>
+        <p class="muted">
+          Als während der Corona-Krise mein Boxverein schließen musste, gab ich nicht auf. Stattdessen kehrte ich zu
+          meinen Wurzeln zurück – zum Krafttraining. Und nicht nur das Feuer, sondern die Leidenschaft zum Bodybuilding
+          brannte stärker denn je. Ich begann auf Wettkampfebene zu starten und lernte, was wahre Disziplin bedeutet.
+          Was es heißt, in einer Diät an seine Grenzen zu gehen. Was mentaler Schmerz ist – und wie gut sich Erfolg
+          danach anfühlt.
+        </p>
+        <p class="muted">
+          Neben meinem Beruf als Bäcker begann ich Trainings- und Ernährungswissenschaften zu studieren. Heute vereine ich
+          fundiertes Wissen mit über einem Jahrzehnt Erfahrung aus der Praxis – und genau dieses Paket bekommst du mit mir
+          als Coach: Realität statt Fitness-Mythen, Erfahrung statt Theorie, Resultate statt Ausreden.
+        </p>
+        <p class="muted">
+          Wenn du jemanden suchst, der dich versteht, dich fordert und mit dir kämpft – dann bist du hier richtig.
+          Lass uns gemeinsam deine beste Form erreichen.
+        </p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Praxis / Galerie -->
   <section id="praxis" class="section">
