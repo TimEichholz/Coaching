@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PLATZHALTER Praxisname – Physiotherapie & Training</title>
+  <style>
+    :root { --bg:#ffffff; --text:#0f172a; --muted:#475569; --brand:#0ea5e9; --brand2:#06b6d4; --line:#e2e8f0; }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.5}
+    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    .container{max-width:1120px;margin:0 auto;padding:0 16px}
+    .topbar{background:#0b1220;color:#fff;font-size:14px}
+    .flex{display:flex}.between{justify-content:space-between}.center{align-items:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.25rem}
+    header{position:sticky;top:0;backdrop-filter:saturate(1.2) blur(6px);background:rgba(255,255,255,.85);border-bottom:1px solid var(--line);z-index:20}
+    .logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    .btn{background:var(--brand);color:#fff;border:0;border-radius:999px;padding:.7rem 1rem;font-weight:600;display:inline-flex;align-items:center}
+    .btn.secondary{background:#e6f6fd;color:#0369a1}
+    .hero{position:relative;overflow:hidden}
+    .hero .bg{position:absolute;inset:0;z-index:-1}
+    .hero .bg:before{content:\"\";position:absolute;inset:0;background:linear-gradient(to top, #fff 20%, rgba(255,255,255,.6) 60%, transparent)}
+    h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0}
+    h2{font-size:clamp(24px,3vw,36px);margin:0}
+    .muted{color:var(--muted)}
+    .section{padding:64px 0}
+    .grid{display:grid;gap:20px}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+    .card .p{padding:16px}
+    .pill{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+    .gallery{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .form input,.form textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px}
+    .form textarea{min-height:140px;resize:vertical}
+    footer{border-top:1px solid var(--line);background:#fff}
+    .sm{font-size:14px}.xs{font-size:12px;color:#64748b}
+    @media (max-width:768px){nav{display:none}}
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container flex between center" style="padding:8px 16px">
+      <div class="flex center gap-2">📞 <span>PLATZHALTER: 01234 / 567890</span></div>
+      <div class="flex center gap-2">✉️ <span>praxis@platzhalter.de</span></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container flex between center" style="padding:16px 0">
+      <a class="flex center gap-3" href="#">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:700">PLATZHALTER Praxisname</div>
+          <div class="xs">Physiotherapie & Training</div>
+        </div>
+      </a>
+      <nav class="flex center gap-6 sm">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#team">Team</a>
+        <a href="#praxis">Praxis</a>
+        <a href="#oeffnungszeiten">Öffnungszeiten</a>
+        <a href="#kontakt">Kontakt & Anfahrt</a>
+        <a class="btn" href="#kontakt">Termin vereinbaren</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="bg">
+      <img src="https://images.unsplash.com/photo-1606813907291-76a1753b5d79?auto=format&fit=crop&w=1600&q=60" alt="Hero" style="height:520px;width:100%;object-fit:cover">
+    </div>
+    <div class="container" style="padding:72px 0 88px;max-width:920px">
+      <h1>PLATZHALTER: Beweglich, schmerzfrei, <span style="color:var(--brand)">zurück in den Alltag</span></h1>
+      <p class="muted" style="margin-top:12px;font-size:18px">PLATZHALTER: Kurzer Claim Ihrer Praxis – evidenzbasiert, persönlich, zielorientiert.</p>
+      <div class="flex gap-3" style="margin-top:16px;flex-wrap:wrap">
+        <a class="btn" href="#kontakt">Jetzt Termin anfragen</a>
+        <a class="flex center gap-2" href="#leistungen" style="font-weight:600">Leistungen ansehen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vorteile -->
+  <section class="section" style="background:#f8fafc;border-block:1px solid var(--line)">
+    <div class="container grid grid-3">
+      <div>✅ Individuelle 1:1-Behandlung</div>
+      <div>✅ Zentrale Lage, barrierearm</div>
+      <div>✅ Abrechnung: alle Kassen & privat (PLATZHALTER)</div>
+    </div>
+  </section>
+
+  <!-- Leistungen -->
+  <section id="leistungen" class="section">
+    <div class="container">
+      <h2>Unsere Leistungen</h2>
+      <p class="muted" style="margin-top:6px;max-width:720px">PLATZHALTER: Überblick über Ihr Spektrum. Hinweise zu Rezeptarten und Dauer.</p>
+      <div class="grid grid-3" style="margin-top:24px">
+        <div class="card"><div class="p"><h3>Krankengymnastik (KG)</h3><p class="muted">PLATZHALTER: Kurzbeschreibung der Leistung.</p></div></div>
+        <div class="card"><div class="p"><h3>Manuelle Therapie (MT)</h3><p class="muted">PLATZHALTER: Gelenk- und Weichteiltechniken.</p></div></div>
+        <div class="card"><div class="p"><h3>Sportphysiotherapie</h3><p class="muted">PLATZHALTER: Return-to-Play & Trainingssteuerung.</p></div></div>
+        <div class="card"><div class="p"><h3>Lymphdrainage (MLD)</h3><p class="muted">PLATZHALTER: Entstauende Maßnahmen.</p></div></div>
+        <div class="card"><div class="p"><h3>CMD-Therapie</h3><p class="muted">PLATZHALTER: Kiefergelenk & Kopfschmerz.</p></div></div>
+        <div class="card"><div class="p"><h3>Hausbesuche</h3><p class="muted">PLATZHALTER: Nach ärztlicher Verordnung.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="section" style="background:#f8fafc;border-block:1px solid var(--line)">
+    <div class="container">
+      <h2>Unser Team</h2>
+      <p class="muted" style="margin-top:6px;max-width:720px">PLATZHALTER: Kurzinfo zum Team, Ansatz & Behandlungsphilosophie.</p>
+      <div class="grid grid-3" style="margin-top:24px">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=60" alt="">
+          <div class="p"><h3>Vorname Nachname</h3><div class="xs">Physiotherapeut:in, Inhaber:in</div><p class="muted">PLATZHALTER: Kurzprofil.</p></div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=800&q=60" alt="">
+          <div class="p"><h3>Vorname Nachname</h3><div class="xs">Physiotherapeut:in</div><p class="muted">PLATZHALTER: Fortbildungen.</p></div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=800&q=60" alt="">
+          <div class="p"><h3>Vorname Nachname</h3><div class="xs">Rezeption / Organisation</div><p class="muted">PLATZHALTER: Terminvergabe & Abrechnung.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Praxis / Galerie -->
+  <section id="praxis" class="section">
+    <div class="container">
+      <h2>Unsere Praxis</h2>
+      <p class="muted" style="margin-top:6px;max-width:720px">PLATZHALTER: Beschreibung der Räumlichkeiten, Geräte, Atmosphäre.</p>
+      <div class="grid gallery" style="margin-top:20px">
+        <img src="https://images.unsplash.com/photo-1581594549595-35f6edc7b762?auto=format&fit=crop&w=1200&q=60" alt="">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=60" alt="">
+        <img src="https://images.unsplash.com/photo-1581594693700-5d5b5d4b6f0d?auto=format&fit=crop&w=1200&q=60" alt="">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=60" alt="">
+        <img src="https://images.unsplash.com/photo-1600959907703-125ba1374b07?auto=format&fit=crop&w=1200&q=60" alt="">
+        <img src="https://images.unsplash.com/photo-1580281657527-47f249e8f3b2?auto=format&fit=crop&w=1200&q=60" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- Öffnungszeiten & Abrechnung -->
+  <section id="oeffnungszeiten" class="section" style="background:#f8fafc;border-block:1px solid var(--line)">
+    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
+      <div>
+        <h2>Öffnungszeiten</h2>
+        <p class="muted">PLATZHALTER: Zeiten nach Vereinbarung / feste Zeiten.</p>
+        <div class="grid" style="margin-top:16px">
+          <div class="pill"><b>Montag</b><span class="muted">08:00–18:00</span></div>
+          <div class="pill"><b>Dienstag</b><span class="muted">08:00–18:00</span></div>
+          <div class="pill"><b>Mittwoch</b><span class="muted">08:00–18:00</span></div>
+          <div class="pill"><b>Donnerstag</b><span class="muted">08:00–18:00</span></div>
+          <div class="pill"><b>Freitag</b><span class="muted">08:00–14:00</span></div>
+          <div class="pill"><b>und nach Vereinbarung</b><span></span></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin:0 0 6px 0">Abrechnung & Hinweise</h3>
+        <ul class="muted">
+          <li>• PLATZHALTER: Gesetzliche & private Kassen, BG/Heilfürsorge – bitte anpassen.</li>
+          <li>• PLATZHALTER: Selbstzahlerleistungen & Gutscheine verfügbar.</li>
+          <li>• PLATZHALTER: Bitte Rezept/Verordnung und Handtuch mitbringen.</li>
+          <li>• PLATZHALTER: Terminabsage bis X Stunden vorher – sonst Ausfallgebühr.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt & Anfahrt -->
+  <section id="kontakt" class="section">
+    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
+      <div>
+        <h2>Kontakt</h2>
+        <p class="muted">PLATZHALTER: Adresse, Parken, ÖPNV.</p>
+        <div class="card"><div class="p">
+          <div class="flex gap-3"><div>📍</div><div><b>PLATZHALTER Praxisname</b><br><span class="muted">PLATZHALTER-Straße 1, 01234 PLATZHALTER-Stadt</span></div></div>
+          <div class="flex gap-3" style="margin-top:8px">📞 <a href="tel:+490000000000">01234 / 567890</a></div>
+          <div class="flex gap-3" style="margin-top:8px">✉️ <a href="mailto:praxis@platzhalter.de">praxis@platzhalter.de</a></div>
+        </div></div>
+
+        <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:20px">
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+    <input name="name" placeholder="Ihr Name *" required>
+    <input type="email" name="email" placeholder="Ihre E-Mail *" required>
+  </div>
+  <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
+  <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
+
+  <!-- Spam-Honeypot (unsichtbar für Menschen) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <!-- Betreff für die E-Mail -->
+  <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
+
+  <div class="xs" style="margin:8px 0 12px">
+    Mit dem Absenden akzeptieren Sie unsere Datenschutzhinweise. (PLATZHALTER)
+  </div>
+
+  <button type="submit" class="btn">Anfrage senden</button>
+  <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
+</form>
+
+<script>
+  const form = document.getElementById('kontakt-form');
+  const statusEl = document.getElementById('form-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusEl.textContent = 'Wird gesendet …';
+
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        window.location.href = 'danke.html';
+      } else {
+        const json = await res.json().catch(() => ({}));
+        statusEl.textContent = json.errors
+          ? json.errors.map(err => err.message).join(', ')
+          : 'Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.';
+      }
+    } catch (err) {
+      statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
+    }
+  });
+</script>
+
+      </div>
+
+      <div>
+        <h3 style="margin:0 0 6px 0">Anfahrt</h3>
+        <p class="muted">PLATZHALTER: Interaktive Karte (Google Maps / OpenStreetMap) hier einbinden.</p>
+        <div style="margin-top:12px;aspect-ratio:4/3;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#94a3b8">
+          Karten-Embed hier einfügen
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callout -->
+  <section class="section" style="text-align:center;background:linear-gradient(90deg,rgba(14,165,233,.08),rgba(6,182,212,.08))">
+    <div class="container">
+      <h3 style="margin:0 0 6px 0;font-size:28px">Bereit für Ihren Termin?</h3>
+      <p class="muted">PLATZHALTER: Rufen Sie uns an oder schreiben Sie uns – wir melden uns zeitnah.</p>
+      <div class="flex center gap-3" style="justify-content:center;margin-top:10px;flex-wrap:wrap">
+        <a class="btn" href="tel:+490000000000">📞 Anrufen</a>
+        <a class="btn secondary" href="#kontakt">✉️ Nachricht senden</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="padding:40px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;font-size:14px">
+      <div><div class="flex center gap-3"><div class="logo" style="height:32px;width:32px"></div><b>PLATZHALTER Praxisname</b></div><p class="muted" style="margin-top:10px">PLATZHALTER: Kurzer Footer-Text über Ihre Praxis.</p></div>
+      <div><b>Kontakt</b><ul class="muted" style="list-style:none;padding:0;margin:10px 0 0"><li>📍 PLATZHALTER-Straße 1, 01234 Stadt</li><li>📞 01234 / 567890</li><li>✉️ praxis@platzhalter.de</li></ul></div>
+      <div><b>Schnellzugriff</b><ul style="list-style:none;padding:0;margin:10px 0 0"><li><a class="muted" href="#leistungen">Leistungen</a></li><li><a class="muted" href="#team">Team</a></li><li><a class="muted" href="#praxis">Praxis</a></li><li><a class="muted" href="#oeffnungszeiten">Öffnungszeiten</a></li><li><a class="muted" href="#kontakt">Kontakt & Anfahrt</a></li></ul></div>
+      <div><b>Rechtliches</b><ul style="list-style:none;padding:0;margin:10px 0 0"><li><a class="muted" href="#impressum">Impressum (PLATZHALTER)</a></li><li><a class="muted" href="#datenschutz">Datenschutz (PLATZHALTER)</a></li></ul></div>
+    </div>
+    <div style="border-top:1px solid var(--line);padding:14px 0;text-align:center" class="xs">© <span id="y"></span> PLATZHALTER Praxisname – Alle Rechte vorbehalten.</div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
