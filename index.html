@@ -8,14 +8,14 @@
 <style>
 /* ===== Farb-Theme (edel-blau) ===== */
 :root{
-  --bg:#f6f9ff;
-  --surface:#ffffff;
-  --surface-2:#eef4ff;
-  --text:#0b1a3a;
-  --muted:#5b6f92;
-  --brand:#1b6cff;
-  --brand2:#00b3ff;
-  --line:#dbe7ff;
+  --bg:#f6f9ff;          /* Seitenhintergrund leicht bläulich */
+  --surface:#ffffff;     /* Karten/Boxen */
+  --surface-2:#eef4ff;   /* zart blau für abgesetzte Bereiche */
+  --text:#0b1a3a;        /* Tintenblau */
+  --muted:#5b6f92;       /* Blau-Grau */
+  --brand:#1b6cff;       /* Akzentblau */
+  --brand2:#00b3ff;      /* Verlaufspartner/Türkis */
+  --line:#dbe7ff;        /* Linien hellblau */
 }
 
 /* ===== Basics ===== */
@@ -30,7 +30,9 @@ body{
     var(--bg);
   line-height:1.5;
 }
-html{scroll-behavior:smooth}
+html {
+  scroll-behavior: smooth;
+}
 
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -51,13 +53,10 @@ header{
 
 .hero{position:relative;overflow:hidden}
 .hero .bg{position:absolute;inset:0;z-index:-1}
+  
 /* edler, blauer Overlay-Verlauf im Hero */
-.hero .bg:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:none;
+.hero .bg:before{content:"";position:absolute;inset:0;pointer-events:none;background:none;}
+
 }
 
 h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0}
@@ -65,6 +64,7 @@ h2{font-size:clamp(24px,3vw,36px);margin:0}
 .muted{color:var(--muted)}
 
 .section{padding:64px 0}
+/* zart-blaue Sektionen */
 .section.alt{background:linear-gradient(180deg,var(--surface-2),#fff);border-block:1px solid var(--line)}
 
 .grid{display:grid;gap:20px}
@@ -89,7 +89,7 @@ footer a{color:#cfe0ff}
 
 @media (max-width:768px){nav{display:none}}
 
-/* ===== Team-Layout ===== */
+/* ===== Team-Layout & Animation (deins, belassen) ===== */
 .team-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:32px;align-items:center}
 @media (max-width:900px){.team-wrap{grid-template-columns:1fr}}
 .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease-out forwards}
@@ -102,7 +102,7 @@ footer a{color:#cfe0ff}
 .profile-img{width:100%;height:520px;object-fit:cover;display:block}
 @media (max-width:900px){.profile-img{height:380px}}
 
-/* ===== Leistungen ===== */
+/* --- Leistungen (Layout) --- */
 .leistungen-wrap{
   display:grid;
   grid-template-columns:1.05fr 1fr;
@@ -115,7 +115,10 @@ footer a{color:#cfe0ff}
   background:linear-gradient(135deg,rgba(27,108,255,.12),transparent 60%);
   box-shadow:0 10px 40px rgba(11,26,58,.15);
 }
-.leistungen-img{width:100%;height:100%;object-fit:cover;display:block}
+.leistungen-img{
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+}
 .leistungen-content .lead{font-size:18px;line-height:1.6;color:var(--text)}
 .features{display:grid;gap:10px;margin:14px 0 0}
 .feature{display:flex;gap:10px;align-items:flex-start;color:var(--text)}
@@ -140,23 +143,29 @@ footer a{color:#cfe0ff}
   .statement{flex-direction:column;align-items:flex-start}
 }
 
-/* ===== Wenger-Style Sections ===== */
+/* ===== Wenger-Style Sections (edles Blau + Schwarz) ===== */
+
+/* Utility */
 .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .kicker{color:var(--brand);font-weight:700}
 .lead-lg{font-size:clamp(18px,2.2vw,20px);line-height:1.7;color:var(--text)}
 .stack>*{margin:0}
 .stack>*+*{margin-top:14px}
 
+/* Zweispaltiges Layout */
 .split{
   display:grid;
   grid-template-columns:1.05fr 1fr;
   gap:56px;
   align-items:center;
 }
-@media (max-width:900px){.split{grid-template-columns:1fr;gap:28px}}
+@media (max-width:900px){
+  .split{grid-template-columns:1fr;gap:28px}
+}
 
+/* Medienrahmen mit edlem Look */
 .media-frame{
-  position:relative;border-radius:28px;overflow:hidden;
+  position:relative; border-radius:28px; overflow:hidden;
   background:
     radial-gradient(1000px 500px at 0% 0%, rgba(0,0,0,.15), transparent 60%),
     linear-gradient(135deg, rgba(27,108,255,.14), rgba(0,0,0,.06));
@@ -164,12 +173,14 @@ footer a{color:#cfe0ff}
 }
 .media-frame img{width:100%;height:100%;object-fit:cover;display:block}
 
+/* Statement/Info-Zeile */
 .inline-note{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;
+  border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:#fff;
 }
 @media (max-width:900px){.inline-note{flex-direction:column;align-items:flex-start}}
 
+/* Feature-Liste im Wenger-Look */
 .features.wenger{display:grid;gap:12px;margin-top:14px}
 .features.wenger .item{display:flex;gap:12px;align-items:flex-start}
 .badge-check{
@@ -180,6 +191,7 @@ footer a{color:#cfe0ff}
   box-shadow:0 6px 16px rgba(0,0,0,.25), 0 0 0 2px rgba(27,108,255,.15) inset;
 }
 
+/* Abschnitt-Optiken */
 .section.wenger-light{
   background:linear-gradient(180deg,#ffffff 0%, #f4f7ff 100%);
   border-block:1px solid var(--line);
@@ -192,97 +204,10 @@ footer a{color:#cfe0ff}
 .section.wenger-dark .muted{color:#b6c5e6}
 .section.wenger-dark .inline-note{background:rgba(255,255,255,.06);border-color:rgba(219,231,255,.14);color:#e6edff}
 
+/* Typografieanpassungen */
 .wenger-h2{font-size:clamp(26px,3.2vw,38px);line-height:1.2;margin:0 0 8px}
 .wenger-h3{font-size:clamp(18px,2.5vw,22px);font-weight:700;margin:0 0 14px}
 
-/* ===== Kontakt & Instagram (edel) ===== */
-.contact-section{
-  background: radial-gradient(1200px 600px at 80% -20%, rgba(27,108,255,.08), transparent 60%),
-              linear-gradient(180deg,#0b1a3a,#0a1326);
-  color:#e6edff;
-  border-top:1px solid rgba(219,231,255,.08);
-}
-.contact-section .container{padding-bottom:8px}
-
-.contact-grid{
-  display:grid;
-  grid-template-columns:1.05fr 1fr;
-  gap:32px;
-  align-items:stretch;
-}
-@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
-
-.contact-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(219,231,255,.12);
-  border-radius:20px;
-  box-shadow:0 18px 50px rgba(8,18,42,.35), inset 0 1px 0 rgba(255,255,255,.06);
-  padding:18px;
-}
-
-.contact-title{
-  font-size:clamp(26px,3vw,36px);
-  line-height:1.15;
-  margin:0 0 18px;
-  color:#fff;
-}
-
-/* Formular im Dark-Mode */
-.form.dark input,
-.form.dark textarea{
-  width:100%;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(219,231,255,.16);
-  background:rgba(255,255,255,.06);
-  color:#e6edff;
-}
-.form.dark input::placeholder,.form.dark textarea::placeholder{color:#9fb2dc}
-.form.dark input:focus,.form.dark textarea:focus{
-  outline:none;
-  border-color:rgba(0,179,255,.6);
-  box-shadow:0 0 0 3px rgba(0,179,255,.18);
-}
-
-/* Instagram-Bildrahmen */
-.ig-frame{
-  position:relative;
-  overflow:hidden;
-  border-radius:22px;
-  background:
-    radial-gradient(900px 500px at 100% 0%, rgba(27,108,255,.16), transparent 60%),
-    linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.18));
-  border:1px solid rgba(219,231,255,.12);
-  box-shadow:0 18px 50px rgba(8,18,42,.35);
-  aspect-ratio:4 / 5;
-}
-.ig-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* IG-Overlay-Button */
-.ig-chip{
-  position:absolute;bottom:14px;right:14px;
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 12px;border-radius:999px;
-  background:rgba(0,0,0,.55);
-  color:#fff;font-weight:600;font-size:14px;
-  transition:transform .2s ease,background .2s ease;
-  backdrop-filter:blur(4px);
-}
-.ig-chip:hover{transform:translateY(-2px);background:rgba(0,0,0,.7)}
-.ig-chip img{width:18px;height:18px;filter:invert(1)}
-
-.btn.on-dark{background:linear-gradient(135deg,var(--brand),var(--brand2))}
-.btn.on-dark.secondary{
-  background:rgba(255,255,255,.06);
-  color:#e6edff;
-  border:1px solid rgba(219,231,255,.16);
-}
-.small-muted{color:#9fb2dc;font-size:12px}
 </style>
 
 </head>
@@ -536,27 +461,19 @@ footer a{color:#cfe0ff}
   </div>
 </section>
 
-<!-- Kontakt & Instagram (edel, passend zum Hero) -->
-<section id="kontakt" class="section contact-section">
-  <div class="container contact-grid">
-
-    <!-- Linke Spalte: Kontakt + Formular -->
+ <!-- Kontakt & Anfahrt -->
+<section id="kontakt" class="section">
+  <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
+    <!-- Linke Seite: Kontaktformular -->
     <div>
-      <h2 class="contact-title">Kontakt</h2>
+      <h2>Kontakt</h2>
+      <div class="card"><div class="p">
+        <div class="flex gap-3"><div>📍</div><div><b>Iron-Coaching by Tim Eichholz</b><br><span class="muted">PLATZHALTER-Straße 1, 01234 PLATZHALTER-Stadt</span></div></div>
+        <div class="flex gap-3" style="margin-top:8px">📞 <a href="tel:+490000000000">01234 / 567890</a></div>
+        <div class="flex gap-3" style="margin-top:8px">✉️ <a href="mailto:maxtim241@gmail.com">maxtim241@gmail.com</a></div>
+      </div></div>
 
-      <div class="contact-card" style="margin-bottom:16px">
-        <div class="flex gap-3" style="align-items:flex-start">
-          <div>📍</div>
-          <div>
-            <b>Iron-Coaching by Tim Eichholz</b><br>
-            <span class="small-muted">PLATZHALTER-Straße 1, 01234 PLATZHALTER-Stadt</span>
-          </div>
-        </div>
-        <div class="flex gap-3" style="margin-top:10px">📞 <a href="tel:+490000000000" style="color:#e6edff">01234 / 567890</a></div>
-        <div class="flex gap-3" style="margin-top:8px">✉️ <a href="mailto:maxtim241@gmail.com" style="color:#e6edff">maxtim241@gmail.com</a></div>
-      </div>
-
-      <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form dark">
+      <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:20px">
         <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
           <input name="name" placeholder="Ihr Name *" required>
           <input type="email" name="email" placeholder="Ihre E-Mail *" required>
@@ -567,45 +484,82 @@ footer a{color:#cfe0ff}
         <input type="text" name="_gotcha" style="display:none">
         <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
 
-        <div class="small-muted" style="margin:10px 0 14px">
+        <div class="xs" style="margin:8px 0 12px">
           Mit dem Absenden akzeptieren Sie unsere Datenschutzhinweise. (PLATZHALTER)
         </div>
 
-        <div class="flex gap-3">
-          <button type="submit" class="btn on-dark">Anfrage senden</button>
-          <a class="btn on-dark secondary" href="mailto:maxtim241@gmail.com">Direkt per Mail</a>
-        </div>
-
-        <div id="form-status" class="small-muted" style="margin-top:8px"></div>
+        <button type="submit" class="btn">Anfrage senden</button>
+        <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
       </form>
+
+      <script>
+        const form = document.getElementById('kontakt-form');
+        const statusEl = document.getElementById('form-status');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          statusEl.textContent = 'Wird gesendet …';
+          const data = new FormData(form);
+          try {
+            const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+            if (res.ok) { window.location.href = 'danke.html'; }
+            else {
+              const json = await res.json().catch(() => ({}));
+              statusEl.textContent = json.errors
+                ? json.errors.map(err => err.message).join(', ')
+                : 'Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.';
+            }
+          } catch (err) {
+            statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
+          }
+        });
+      </script>
     </div>
 
-    <!-- Rechte Spalte: Instagram-Teaser -->
+    <!-- Rechte Seite: Instagram -->
     <div>
-      <h3 style="margin:0 0 8px 0;color:#e6edff">Instagram</h3>
-      <p class="small-muted" style="margin:0 0 12px">Mehr Einblicke hinter die Kulissen, Training & Motivation.</p>
+      <h3 style="margin:0 0 6px 0">Instagram</h3>
+      <p class="muted">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
 
-      <a href="https://www.instagram.com/t.eichholz/" target="_blank" class="ig-frame" aria-label="Zu Instagram wechseln">
-        <img src="Pose3.jpeg" alt="Tim Eichholz – Bühnenfoto" loading="lazy">
-        <span class="ig-chip">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
-          Profil ansehen
-        </span>
+      <!-- Klickbares Instagram-Bild -->
+      <a href="https://www.instagram.com/t.eichholz/" target="_blank" 
+         style="display:block;position:relative;overflow:hidden;border-radius:16px;margin-top:16px;">
+        <img src="Pose3.jpeg" alt="Tim Eichholz – Bühnenfoto" style="width:100%;height:auto;display:block;border-radius:16px;">
+
+        <!-- Instagram-Logo als Overlay -->
+        <div style="
+          position:absolute;
+          bottom:16px;
+          right:16px;
+          background:rgba(0,0,0,0.6);
+          border-radius:50%;
+          padding:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          transition:background 0.3s;
+        ">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram Logo" style="width:26px;height:26px;filter:invert(1);">
+        </div>
       </a>
     </div>
-
   </div>
 </section>
+
+
  
 
   <!-- Callout -->
-  
-<div class="flex center gap-3" style="justify-content:center;margin-top:10px;flex-wrap:wrap">
-  <a class="btn secondary" href="mailto:maxtim241@gmail.com?subject=Anfrage%20über%20deine%20Website&body=Hallo%20Tim,%0D%0A%0D%0AIch%20möchte%20mich%20gerne%20über%20dein%20Coaching%20informieren.%20%0D%0A%0D%0AMit%20freundlichen%20Grüßen,%0D%0A%5BDein%20Name%5D">
+  <section class="section" style="text-align:center;background:linear-gradient(90deg,rgba(14,165,233,.08),rgba(6,182,212,.08))">
+    <div class="container">
+      <h3 style="margin:0 0 6px 0;font-size:28px">Bereit für deinen Termin?</h3>
+      <p class="muted">Schreibe mir gerne eine Mail - ich melde mich zeitnah.</p>
+      <div class="flex center gap-3" style="justify-content:center;margin-top:10px;flex-wrap:wrap">
+        <a class="btn secondary" href="mailto:maxtim241@gmail.com?subject=Anfrage%20über%20deine%20Website&body=Hallo%20Tim,%0D%0A%0D%0AIch%20möchte%20mich%20gerne%20über%20dein%20Coaching%20informieren.%20%0D%0A%0D%0AMit%20freundlichen%20Grüßen,%0D%0A%5BDein%20Name%5D">
     ✉️ Nachricht senden
   </a>
-</div>
-
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
