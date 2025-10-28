@@ -208,6 +208,58 @@ footer a{color:#cfe0ff}
 .wenger-h2{font-size:clamp(26px,3.2vw,38px);line-height:1.2;margin:0 0 8px}
 .wenger-h3{font-size:clamp(18px,2.5vw,22px);font-weight:700;margin:0 0 14px}
 
+  /* Kontakt-Section → dunkler Hintergrund wie „Über mich“ */
+#kontakt.section.wenger-dark{
+  background:linear-gradient(180deg,#0d111c,#0a1326);
+  color:#e6edff;
+  border-block:1px solid rgba(219,231,255,.08);
+}
+#kontakt.section.wenger-dark h2,
+#kontakt.section.wenger-dark h3{ color:#fff }
+#kontakt .muted{ color:#b6c5e6 }
+
+/* Formular bleibt hell & gut lesbar auf dunkel */
+#kontakt .contact-card{ background:rgba(255,255,255,.06); border-color:rgba(219,231,255,.14) }
+#kontakt .form input,#kontakt .form textarea{
+  background:rgba(255,255,255,.06); color:#e6edff; border-color:rgba(219,231,255,.18)
+}
+#kontakt .form input::placeholder,#kontakt .form textarea::placeholder{ color:#9fb2dc }
+#kontakt .form input:focus,#kontakt .form textarea:focus{
+  outline:none; border-color:rgba(0,179,255,.6); box-shadow:0 0 0 3px rgba(0,179,255,.18)
+}
+
+/* Instagram-Carousel */
+.ig-carousel{
+  position:relative; border-radius:22px; overflow:hidden;
+  border:1px solid rgba(219,231,255,.14);
+  background:linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.18));
+  box-shadow:0 18px 50px rgba(8,18,42,.35);
+  aspect-ratio:3/4;
+}
+.ig-track{
+  display:flex; height:100%; width:100%;
+  transition:transform .5s ease; will-change:transform;
+}
+.ig-slide{ min-width:100%; height:100% }
+.ig-slide img{ width:100%; height:100%; object-fit:cover; display:block }
+
+/* Pfeile */
+.ig-arrow{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(0,0,0,.5); color:#fff; border:1px solid rgba(255,255,255,.25);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; backdrop-filter:blur(4px);
+  transition:background .2s, transform .2s;
+}
+.ig-arrow:hover{ background:rgba(0,0,0,.7); transform:translateY(-50%) scale(1.04) }
+.ig-arrow.left{ left:12px } .ig-arrow.right{ right:12px }
+
+/* kleine Punkt-Navigation (optional) */
+.ig-dots{ position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:8px }
+.ig-dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); }
+.ig-dot.active{ background:#fff }
+
 </style>
 
 </head>
@@ -462,7 +514,7 @@ footer a{color:#cfe0ff}
 </section>
 
  <!-- Kontakt & Anfahrt -->
-<section id="kontakt" class="section">
+<section id="kontakt" class="section wenger-dark">
   <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
     <!-- Linke Seite: Kontaktformular -->
     <div>
@@ -516,33 +568,33 @@ footer a{color:#cfe0ff}
     </div>
 
     <!-- Rechte Seite: Instagram -->
-    <div>
-      <h3 style="margin:0 0 6px 0">Instagram</h3>
-      <p class="muted">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
+    
+   <div>
+  <h3 style="margin:0 0 8px 0;">Instagram</h3>
+  <p class="muted" style="margin:0 0 12px">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
 
-      <!-- Klickbares Instagram-Bild -->
-      <a href="https://www.instagram.com/t.eichholz/" target="_blank" 
-         style="display:block;position:relative;overflow:hidden;border-radius:16px;margin-top:16px;">
-        <img src="Pose3.jpeg" alt="Tim Eichholz – Bühnenfoto" style="width:100%;height:auto;display:block;border-radius:16px;">
-
-        <!-- Instagram-Logo als Overlay -->
-        <div style="
-          position:absolute;
-          bottom:16px;
-          right:16px;
-          background:rgba(0,0,0,0.6);
-          border-radius:50%;
-          padding:10px;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          transition:background 0.3s;
-        ">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram Logo" style="width:26px;height:26px;filter:invert(1);">
-        </div>
-      </a>
+  <div class="ig-carousel" id="igCarousel">
+    <div class="ig-track">
+      <div class="ig-slide"><img src="Pose3.jpeg" alt="Instagram Bild 1"></div>
+      <div class="ig-slide"><img src="Pose1.jpeg" alt="Instagram Bild 2"></div>
+      <div class="ig-slide"><img src="Pose2.jpeg" alt="Instagram Bild 3"></div>
+      <div class="ig-slide"><img src="Pose4.jpeg" alt="Instagram Bild 4"></div>
+      <div class="ig-slide"><img src="Rücken.jpeg" alt="Instagram Bild 5"></div>
+      <!-- Falls 'Rücken.jpeg' Probleme macht, benenne zu 'Ruecken.jpeg' und passe hier an -->
     </div>
+
+    <button class="ig-arrow left"  aria-label="Vorheriges Bild">‹</button>
+    <button class="ig-arrow right" aria-label="Nächstes Bild">›</button>
+
+    <div class="ig-dots"></div>
   </div>
+
+  <!-- Chip-Button unten rechts direkt zum Profil (optional beibehalten) -->
+  <div style="margin-top:10px">
+    <a href="https://www.instagram.com/t.eichholz/" target="_blank" class="btn on-dark secondary">Profil auf Instagram ansehen</a>
+  </div>
+</div>
+
 </section>
 
 
