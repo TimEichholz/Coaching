@@ -569,31 +569,22 @@ footer a{color:#cfe0ff}
 
     <!-- Rechte Seite: Instagram -->
     
-   <div>
-  <h3 style="margin:0 0 8px 0;">Instagram</h3>
-  <p class="muted" style="margin:0 0 12px">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
-
   <div class="ig-carousel" id="igCarousel">
-    <div class="ig-track">
-      <div class="ig-slide"><img src="Pose3.jpeg" alt="Instagram Bild 1"></div>
-      <div class="ig-slide"><img src="Pose1.jpeg" alt="Instagram Bild 2"></div>
-      <div class="ig-slide"><img src="Pose2.jpeg" alt="Instagram Bild 3"></div>
-      <div class="ig-slide"><img src="Pose4.jpeg" alt="Instagram Bild 4"></div>
-      <div class="ig-slide"><img src="ruecken.jpg" alt="Instagram Bild 5"></div>
-      <!-- Falls 'Rücken.jpeg' Probleme macht, benenne zu 'Ruecken.jpeg' und passe hier an -->
-    </div>
-
-    <button class="ig-arrow left"  aria-label="Vorheriges Bild">‹</button>
-    <button class="ig-arrow right" aria-label="Nächstes Bild">›</button>
-
-    <div class="ig-dots"></div>
+  <div class="ig-track">
+    <div class="ig-slide"><img src="Pose3.jpeg" alt="Instagram Bild 1"></div>
+    <div class="ig-slide"><img src="Pose1.jpeg" alt="Instagram Bild 2"></div>
+    <div class="ig-slide"><img src="Pose2.jpeg" alt="Instagram Bild 3"></div>
+    <div class="ig-slide"><img src="Pose4.jpeg" alt="Instagram Bild 4"></div>
+    <div class="ig-slide"><img src="ruecken.jpeg" alt="Instagram Bild 5"></div> 
+    <!-- Falls die Datei wirklich 'ruecken.jpg' heißt, passe den Namen exakt an -->
   </div>
 
-  <!-- Chip-Button unten rechts direkt zum Profil (optional beibehalten) -->
-  <div style="margin-top:10px">
-    <a href="https://www.instagram.com/t.eichholz/" target="_blank" class="btn on-dark secondary">Profil auf Instagram ansehen</a>
-  </div>
+  <button type="button" class="ig-arrow left"  aria-label="Vorheriges Bild">‹</button>
+  <button type="button" class="ig-arrow right" aria-label="Nächstes Bild">›</button>
+
+  <div class="ig-dots"></div>
 </div>
+
 
 </section>
 
@@ -652,6 +643,55 @@ footer a{color:#cfe0ff}
     });
   });
 </script>
+
+<script>
+(function(){
+  const carousel = document.getElementById('igCarousel');
+  if(!carousel) return;
+
+  const track = carousel.querySelector('.ig-track');
+  const slides = Array.from(track.children);
+  const prev = carousel.querySelector('.left');
+  const next = carousel.querySelector('.right');
+  const dotsWrap = carousel.querySelector('.ig-dots');
+
+  let index = 0;
+
+  // Dots erzeugen
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'ig-dot' + (i===0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function update(){
+    track.style.transform = `translateX(-${index*100}%)`;
+    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+  }
+  function goTo(i){
+    index = (i + slides.length) % slides.length;
+    update();
+  }
+
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  // Swipe (mobil)
+  let startX = null;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX }, {passive:true});
+  track.addEventListener('touchmove',  e => {
+    if(startX===null) return;
+    const dx = e.touches[0].clientX - startX;
+    if(Math.abs(dx) > 50){
+      goTo(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    }
+  }, {passive:true});
+})();
+</script>
+
 
 </body>
 </html>
