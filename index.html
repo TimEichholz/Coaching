@@ -138,6 +138,72 @@ footer a{color:#cfe0ff}
   .leistungen-wrap{grid-template-columns:1fr;gap:28px}
   .statement{flex-direction:column;align-items:flex-start}
 }
+
+/* ===== Wenger-Style Sections (edles Blau + Schwarz) ===== */
+
+/* Utility */
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.kicker{color:var(--brand);font-weight:700}
+.lead-lg{font-size:clamp(18px,2.2vw,20px);line-height:1.7;color:var(--text)}
+.stack>*{margin:0}
+.stack>*+*{margin-top:14px}
+
+/* Zweispaltiges Layout */
+.split{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:56px;
+  align-items:center;
+}
+@media (max-width:900px){
+  .split{grid-template-columns:1fr;gap:28px}
+}
+
+/* Medienrahmen mit edlem Look */
+.media-frame{
+  position:relative; border-radius:28px; overflow:hidden;
+  background:
+    radial-gradient(1000px 500px at 0% 0%, rgba(0,0,0,.15), transparent 60%),
+    linear-gradient(135deg, rgba(27,108,255,.14), rgba(0,0,0,.06));
+  box-shadow:0 18px 50px rgba(8,18,42,.25), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.media-frame img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Statement/Info-Zeile */
+.inline-note{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:#fff;
+}
+@media (max-width:900px){.inline-note{flex-direction:column;align-items:flex-start}}
+
+/* Feature-Liste im Wenger-Look */
+.features.wenger{display:grid;gap:12px;margin-top:14px}
+.features.wenger .item{display:flex;gap:12px;align-items:flex-start}
+.badge-check{
+  height:28px;width:28px;border-radius:999px;flex:0 0 28px;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;
+  background:linear-gradient(135deg,#0e172e,#0b1a3a);
+  box-shadow:0 6px 16px rgba(0,0,0,.25), 0 0 0 2px rgba(27,108,255,.15) inset;
+}
+
+/* Abschnitt-Optiken */
+.section.wenger-light{
+  background:linear-gradient(180deg,#ffffff 0%, #f4f7ff 100%);
+  border-block:1px solid var(--line);
+}
+.section.wenger-dark{
+  background:linear-gradient(180deg,#0d111c,#0a1326);
+  color:#e6edff;
+  border-block:1px solid rgba(219,231,255,.08);
+}
+.section.wenger-dark .muted{color:#b6c5e6}
+.section.wenger-dark .inline-note{background:rgba(255,255,255,.06);border-color:rgba(219,231,255,.14);color:#e6edff}
+
+/* Typografieanpassungen */
+.wenger-h2{font-size:clamp(26px,3.2vw,38px);line-height:1.2;margin:0 0 8px}
+.wenger-h3{font-size:clamp(18px,2.5vw,22px);font-weight:700;margin:0 0 14px}
+
 </style>
 
 </head>
@@ -239,90 +305,84 @@ footer a{color:#cfe0ff}
 
 
   
-<!-- Meine Leistungen -->
-<section id="leistungen" class="section alt" style="background:linear-gradient(180deg,#eef4ff 0%,#fff 100%)">
-  <div class="container leistungen-wrap">
-    
-    <!-- Text links -->
-    <div class="leistungen-content">
-      <h2 style="margin-bottom:10px;">Meine Leistungen</h2>
-      <h3 style="color:var(--brand);margin:0 0 16px 0;font-weight:600;">Dein Weg zu deiner besten Form beginnt hier</h3>
+<!-- === Meine Leistungen (Wenger-Stil, hell) === -->
+<section id="leistungen" class="section wenger-light">
+  <div class="container split">
 
-      <p class="lead">
-        Du willst stärker werden – körperlich und mental. Du willst deine Ernährung endlich verstehen, deine Fitness auf das nächste Level bringen und den Lebensstil leben, den du dir schon lange wünschst. Dann bist du hier genau richtig.
+    <!-- Bildseite -->
+    <div class="media-frame">
+      <!-- eigene Datei einsetzen -->
+      <img src="Pose1.jpeg" alt="Personal Training – Tim Eichholz">
+    </div>
+
+    <!-- Textseite -->
+    <div class="stack">
+      <div class="eyebrow">Angebot</div>
+      <h2 class="wenger-h2">Meine Leistungen</h2>
+      <h3 class="wenger-h3 kicker">Dein Weg zu deiner besten Form beginnt hier</h3>
+
+      <p class="lead-lg">
+        Du willst stärker werden – körperlich und mental. Mit meinem Coaching bekommst du
+        keine leeren Versprechungen, sondern echte Ergebnisse: klare Pläne, saubere Technik
+        und einen Lifestyle, der zu dir passt.
+      </p>
+
+      <div class="features wenger">
+        <div class="item"><span class="badge-check">✓</span><span><b>Personalisiertes Training</b> – effiziente Workouts, auf Ziele & Alltag abgestimmt.</span></div>
+        <div class="item"><span class="badge-check">✓</span><span><b>Ernährungsstrategie</b> – verständlich, praktikabel und ohne Dogmen.</span></div>
+        <div class="item"><span class="badge-check">✓</span><span><b>Mindset & Motivation</b> – ich begleite dich auf jedem Schritt.</span></div>
+        <div class="item"><span class="badge-check">✓</span><span><b>Nachhaltige Resultate</b> – kein Jo-Jo, sondern Fortschritt mit System.</span></div>
+      </div>
+
+      <div class="inline-note">
+        <div><b>Dein Körper. Deine Ziele.</b> Starte jetzt deine Transformation.</div>
+        <a class="btn" href="#kontakt">Jetzt Termin anfragen</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- === Über mich (Wenger-Stil, dunkel & edel) === -->
+<section id="team" class="section wenger-dark">
+  <div class="container split" style="align-items:stretch">
+
+    <!-- Textseite -->
+    <div class="stack" style="justify-content:center">
+      <div class="eyebrow">Über mich</div>
+      <h2 class="wenger-h2" style="color:#fff">Tim Eichholz</h2>
+      <h3 class="wenger-h3" style="color:var(--brand2)">Mein Weg zur Leidenschaft Bodybuilding</h3>
+
+      <p class="lead-lg" style="color:#dbe7ff">
+        Sport war immer da – erfüllt hat mich erst Krafttraining. Nach einem Motorradunfall
+        habe ich neu angefangen und gelernt, was echte Disziplin bedeutet.
       </p>
       <p class="muted">
-        Mit meinem Coaching bekommst du keine leeren Versprechungen, sondern echte Ergebnisse. Ich helfe dir dabei, dein volles Potenzial zu entfalten – ganz egal, ob du Anfänger bist oder bereits Erfahrung im Fitness- oder Bodybuildingbereich hast. Gemeinsam schaffen wir eine starke Basis und entwickeln Schritt für Schritt deinen individuellen Erfolgsplan.
+        Heute verbinde ich über zehn Jahre Trainingserfahrung mit Wissen aus
+        Trainings- und Ernährungswissenschaften. Mein Coaching steht für
+        <b>Realität statt Mythen</b> und <b>Resultate statt Ausreden</b>.
       </p>
 
-      <div class="features">
-        <div class="feature"><span class="check">✓</span><span><b>Personalisiertes Training</b> – effektive Workouts, abgestimmt auf deine Ziele</span></div>
-        <div class="feature"><span class="check">✓</span><span><b>Strukturierte Ernährungspläne</b> – leicht verständlich und alltagstauglich</span></div>
-        <div class="feature"><span class="check">✓</span><span><b>Motivation & Mindset</b> – ich begleite dich auf jedem Schritt deiner Reise</span></div>
-        <div class="feature"><span class="check">✓</span><span><b>Nachhaltige Ergebnisse</b> – ohne Jojo-Effekt, ohne sinnlose Mythen</span></div>
+      <div class="inline-note">
+        <div><b>Bereit für den nächsten Schritt?</b> Lass uns dein Ziel definieren und einen Plan bauen.</div>
+        <a class="btn" href="#kontakt">Kontakt aufnehmen</a>
       </div>
 
-      <p class="muted" style="margin-top:16px">
-        Ich zeige dir, wie du dauerhaft stärker, fitter und selbstbewusster wirst. Nicht durch Abkürzungen, sondern durch ein System, das funktioniert. Wenn du bereit bist, Verantwortung zu übernehmen und das Beste aus dir herauszuholen, dann lass uns gemeinsam starten.
-      </p>
-
-      <div class="statement">
-        <div><b>Dein Körper. Deine Ziele. Deine Transformation.</b><br>Jetzt ist der richtige Zeitpunkt.</div>
-        <div class="cta"><a class="btn" href="#kontakt">Jetzt Termin anfragen</a></div>
-      </div>
+      <div class="xs" style="margin-top:10px;color:#9fb2dc">Personal Trainer & Coach</div>
     </div>
 
-    <!-- Bild rechts -->
-    <div class="leistungen-media">
-      <img src="Pose1.jpeg" alt="Bühnenpose – Tim Eichholz" class="leistungen-img">
+    <!-- Bildseite -->
+    <div class="media-frame" style="background:
+      radial-gradient(900px 500px at 100% 0%, rgba(27,108,255,.18), transparent 60%),
+      linear-gradient(135deg, rgba(0,0,0,.35), rgba(0,0,0,.1));
+    ">
+      <!-- eigene Datei einsetzen -->
+      <img src="Pose4.jpeg" alt="Tim Eichholz – Bühnenpose">
     </div>
 
   </div>
 </section>
 
-
-<!-- Über mich -->
-<section id="team" class="section alt" style="background:linear-gradient(180deg,#eef4ff 0%,#fff 100%);">
-  <div class="container" style="max-width:1200px;">
-    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;">
-      
-      <!-- Bildseite -->
-      <div style="position:relative;">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,108,255,.15),transparent 60%);border-radius:24px;"></div>
-        <img src="Pose4.jpeg" alt="Tim Eichholz – Bühnenpose" 
-             style="width:100%;border-radius:24px;object-fit:cover;box-shadow:0 10px 40px rgba(11,26,58,.2);position:relative;z-index:1;">
-      </div>
-
-      <!-- Textseite -->
-      <div>
-        <h2 style="font-size:clamp(26px,3vw,38px);margin-bottom:16px;">Über mich</h2>
-        <h3 style="color:var(--brand);margin-top:0;font-weight:600;font-size:20px;">
-          Mein Weg zur Leidenschaft Bodybuilding
-        </h3>
-        <p style="font-size:18px;line-height:1.6;color:#0b1a3a;margin-top:18px;">
-          Hey, ich freue mich, dass du den Weg auf meine Website gefunden hast. In diesem Text möchte ich dir einen Einblick in meine Geschichte geben – wie der Sport mein Leben verändert hat und warum ich heute Menschen dabei helfe, ihre beste Version zu werden.
-        </p>
-        <p style="color:#475569;line-height:1.6;margin-bottom:14px;">
-          Schon als kleiner Junge war Sport ein Teil meines Lebens – ob Fußball, Lauftraining oder Triathlon. Doch nichts davon hat mich wirklich erfüllt. Das änderte sich, als mein Vater mir eines Tages meine ersten Bodybuilding-Magazine mitbrachte. In diesem Moment wurde ein Feuer in mir entfacht – ich hatte ein Ziel, eine Richtung.
-        </p>
-        <p style="color:#475569;line-height:1.6;margin-bottom:14px;">
-          Nach einem schweren Motorradunfall mit 16 musste ich neu beginnen. Zwei Jahre Reha später erkannte ich: Aufgeben ist keine Option. Durch Freunde fand ich den Weg zurück in den Sport, zum Boxen und schließlich zum Krafttraining – das mich stärker machte als je zuvor.
-        </p>
-        <p style="color:#475569;line-height:1.6;margin-bottom:14px;">
-          Heute verbinde ich über zehn Jahre Trainingserfahrung mit fundiertem Wissen aus meinem Studium der Trainings- und Ernährungswissenschaften. 
-          Mein Coaching steht für <b>Realität statt Fitness-Mythen, Erfahrung statt Theorie und Resultate statt Ausreden.</b>
-        </p>
-
-        <!-- Signatur & CTA -->
-        <div style="margin-top:32px;">
-          <div style="font-weight:700;font-size:18px;">Tim Eichholz</div>
-          <div class="xs" style="color:var(--muted);margin-bottom:18px;">Personal Trainer & Coach</div>
-          <a href="#kontakt" class="btn" style="padding:0.9rem 1.6rem;font-size:16px;">Jetzt Kontakt aufnehmen</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
     
