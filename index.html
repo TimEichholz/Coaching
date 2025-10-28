@@ -449,15 +449,29 @@ footer a{color:#cfe0ff}
       <div class="xs" style="margin-top:10px;color:#9fb2dc">Tim Eichholz – Personal Trainer & Coach</div>
     </div>
 
-    <!-- Bildseite -->
-    <div class="media-frame" style="background:
-      radial-gradient(900px 500px at 100% 0%, rgba(27,108,255,.18), transparent 60%),
-      linear-gradient(135deg, rgba(0,0,0,.35), rgba(0,0,0,.1));
-    ">
-      <img src="Pose4.jpeg" alt="Tim Eichholz – Bühnenpose">
+    <!-- Bildseite mit Instagram-Slider -->
+<div class="media-frame" style="
+  background:
+    radial-gradient(900px 500px at 100% 0%, rgba(27,108,255,.18), transparent 60%),
+    linear-gradient(135deg, rgba(0,0,0,.35), rgba(0,0,0,.1));
+  padding:0; overflow:hidden;
+">
+  <div class="ig-carousel" id="aboutCarousel" style="aspect-ratio:auto;height:100%">
+    <div class="ig-track">
+      <div class="ig-slide"><img src="Pose3.jpeg" alt="Instagram Bild 1"></div>
+      <div class="ig-slide"><img src="Pose1.jpeg" alt="Instagram Bild 2"></div>
+      <div class="ig-slide"><img src="Pose2.jpeg" alt="Instagram Bild 3"></div>
+      <div class="ig-slide"><img src="Pose4.jpeg" alt="Instagram Bild 4"></div>
+      <div class="ig-slide"><img src="ruecken.jpg" alt="Instagram Bild 5"></div>
     </div>
 
+    <button type="button" class="ig-arrow left"  aria-label="Vorheriges Bild">‹</button>
+    <button type="button" class="ig-arrow right" aria-label="Nächstes Bild">›</button>
+
+    <div class="ig-dots"></div>
   </div>
+</div>
+
 </section>
 
 <!-- === Meine Leistungen (Wenger-Stil, hell) === -->
