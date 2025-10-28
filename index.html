@@ -704,6 +704,54 @@ footer a{color:#cfe0ff}
   }, {passive:true});
 })();
 </script>
+  
+<script>
+(function(){
+  const carousel = document.getElementById('aboutCarousel');
+  if(!carousel) return;
+
+  const track = carousel.querySelector('.ig-track');
+  const slides = Array.from(track.children);
+  const prev = carousel.querySelector('.left');
+  const next = carousel.querySelector('.right');
+  const dotsWrap = carousel.querySelector('.ig-dots');
+
+  let index = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'ig-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    update();
+  }
+
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  // Swipe auf Mobilgeräten
+  let startX = null;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX }, { passive: true });
+  track.addEventListener('touchmove', e => {
+    if (startX === null) return;
+    const dx = e.touches[0].clientX - startX;
+    if (Math.abs(dx) > 50) {
+      goTo(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    }
+  }, { passive: true });
+})();
+</script>
 
 
 </body>
