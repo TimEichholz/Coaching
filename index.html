@@ -417,80 +417,90 @@ footer a{color:#cfe0ff}
   </div>
 </section>
 
-  <!-- Kontakt & Anfahrt -->
-  <section id="kontakt" class="section">
-    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
-      <div>
-        <h2>Kontakt</h2>
-        <div class="card"><div class="p">
-          <div class="flex gap-3"><div>📍</div><div><b>Iron-Coaching by Tim Eichholz</b><br><span class="muted">PLATZHALTER-Straße 1, 01234 PLATZHALTER-Stadt</span></div></div>
-          <div class="flex gap-3" style="margin-top:8px">📞 <a href="tel:+490000000000">01234 / 567890</a></div>
-          <div class="flex gap-3" style="margin-top:8px">✉️ <a href="mailto:praxis@platzhalter.de">maxtim241@gmail.com</a></div>
-        </div></div>
+ <!-- Kontakt & Anfahrt -->
+<section id="kontakt" class="section">
+  <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
+    <!-- Linke Seite: Kontaktformular -->
+    <div>
+      <h2>Kontakt</h2>
+      <div class="card"><div class="p">
+        <div class="flex gap-3"><div>📍</div><div><b>Iron-Coaching by Tim Eichholz</b><br><span class="muted">PLATZHALTER-Straße 1, 01234 PLATZHALTER-Stadt</span></div></div>
+        <div class="flex gap-3" style="margin-top:8px">📞 <a href="tel:+490000000000">01234 / 567890</a></div>
+        <div class="flex gap-3" style="margin-top:8px">✉️ <a href="mailto:maxtim241@gmail.com">maxtim241@gmail.com</a></div>
+      </div></div>
 
-        <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:20px">
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-    <input name="name" placeholder="Ihr Name *" required>
-    <input type="email" name="email" placeholder="Ihre E-Mail *" required>
-  </div>
-  <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
-  <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
-
-  <!-- Spam-Honeypot (unsichtbar für Menschen) -->
-  <input type="text" name="_gotcha" style="display:none">
-
-  <!-- Betreff für die E-Mail -->
-  <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
-
-  <div class="xs" style="margin:8px 0 12px">
-    Mit dem Absenden akzeptieren Sie unsere Datenschutzhinweise. (PLATZHALTER)
-  </div>
-
-  <button type="submit" class="btn">Anfrage senden</button>
-  <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
-</form>
-
-<script>
-  const form = document.getElementById('kontakt-form');
-  const statusEl = document.getElementById('form-status');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    statusEl.textContent = 'Wird gesendet …';
-
-    const data = new FormData(form);
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        window.location.href = 'danke.html';
-      } else {
-        const json = await res.json().catch(() => ({}));
-        statusEl.textContent = json.errors
-          ? json.errors.map(err => err.message).join(', ')
-          : 'Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.';
-      }
-    } catch (err) {
-      statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
-    }
-  });
-</script>
-
-      </div>
-
-      <div>
-        <h3 style="margin:0 0 6px 0">Instagram</h3>
-        <p class="muted">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
-        <div style="margin-top:12px;aspect-ratio:4/3;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#94a3b8">
-          Karten-Embed hier einfügen
+      <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:20px">
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <input name="name" placeholder="Ihr Name *" required>
+          <input type="email" name="email" placeholder="Ihre E-Mail *" required>
         </div>
-      </div>
+        <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
+        <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
+
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
+
+        <div class="xs" style="margin:8px 0 12px">
+          Mit dem Absenden akzeptieren Sie unsere Datenschutzhinweise. (PLATZHALTER)
+        </div>
+
+        <button type="submit" class="btn">Anfrage senden</button>
+        <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
+      </form>
+
+      <script>
+        const form = document.getElementById('kontakt-form');
+        const statusEl = document.getElementById('form-status');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          statusEl.textContent = 'Wird gesendet …';
+          const data = new FormData(form);
+          try {
+            const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+            if (res.ok) { window.location.href = 'danke.html'; }
+            else {
+              const json = await res.json().catch(() => ({}));
+              statusEl.textContent = json.errors
+                ? json.errors.map(err => err.message).join(', ')
+                : 'Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.';
+            }
+          } catch (err) {
+            statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
+          }
+        });
+      </script>
     </div>
-  </section>
+
+    <!-- Rechte Seite: Instagram -->
+    <div>
+      <h3 style="margin:0 0 6px 0">Instagram</h3>
+      <p class="muted">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
+
+      <!-- Klickbares Instagram-Bild -->
+      <a href="https://www.instagram.com/t.eichholz/" target="_blank" 
+         style="display:block;position:relative;overflow:hidden;border-radius:16px;margin-top:16px;">
+        <img src="Pose3.jpeg" alt="Tim Eichholz – Bühnenfoto" style="width:100%;height:auto;display:block;border-radius:16px;">
+
+        <!-- Instagram-Logo als Overlay -->
+        <div style="
+          position:absolute;
+          bottom:16px;
+          right:16px;
+          background:rgba(0,0,0,0.6);
+          border-radius:50%;
+          padding:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          transition:background 0.3s;
+        ">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram Logo" style="width:26px;height:26px;filter:invert(1);">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 
  
 
