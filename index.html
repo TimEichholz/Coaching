@@ -8,14 +8,14 @@
 <style>
 /* ===== Farb-Theme (edel-blau) ===== */
 :root{
-  --bg:#f6f9ff;          /* Seitenhintergrund leicht bläulich */
-  --surface:#ffffff;     /* Karten/Boxen */
-  --surface-2:#eef4ff;   /* zart blau für abgesetzte Bereiche */
-  --text:#0b1a3a;        /* Tintenblau */
-  --muted:#5b6f92;       /* Blau-Grau */
-  --brand:#1b6cff;       /* Akzentblau */
-  --brand2:#00b3ff;      /* Verlaufspartner/Türkis */
-  --line:#dbe7ff;        /* Linien hellblau */
+  --bg:#f6f9ff;
+  --surface:#ffffff;
+  --surface-2:#eef4ff;
+  --text:#0b1a3a;
+  --muted:#5b6f92;
+  --brand:#1b6cff;
+  --brand2:#00b3ff;
+  --line:#dbe7ff;
 }
 
 /* ===== Basics ===== */
@@ -30,9 +30,7 @@ body{
     var(--bg);
   line-height:1.5;
 }
-html {
-  scroll-behavior: smooth;
-}
+html{scroll-behavior:smooth}
 
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -53,10 +51,13 @@ header{
 
 .hero{position:relative;overflow:hidden}
 .hero .bg{position:absolute;inset:0;z-index:-1}
-  
 /* edler, blauer Overlay-Verlauf im Hero */
-.hero .bg:before{content:"";position:absolute;inset:0;pointer-events:none;background:none;}
-
+.hero .bg:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:none;
 }
 
 h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0}
@@ -64,7 +65,6 @@ h2{font-size:clamp(24px,3vw,36px);margin:0}
 .muted{color:var(--muted)}
 
 .section{padding:64px 0}
-/* zart-blaue Sektionen */
 .section.alt{background:linear-gradient(180deg,var(--surface-2),#fff);border-block:1px solid var(--line)}
 
 .grid{display:grid;gap:20px}
@@ -89,7 +89,7 @@ footer a{color:#cfe0ff}
 
 @media (max-width:768px){nav{display:none}}
 
-/* ===== Team-Layout & Animation (deins, belassen) ===== */
+/* ===== Team-Layout ===== */
 .team-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:32px;align-items:center}
 @media (max-width:900px){.team-wrap{grid-template-columns:1fr}}
 .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease-out forwards}
@@ -102,7 +102,7 @@ footer a{color:#cfe0ff}
 .profile-img{width:100%;height:520px;object-fit:cover;display:block}
 @media (max-width:900px){.profile-img{height:380px}}
 
-/* --- Leistungen (Layout) --- */
+/* ===== Leistungen ===== */
 .leistungen-wrap{
   display:grid;
   grid-template-columns:1.05fr 1fr;
@@ -115,10 +115,7 @@ footer a{color:#cfe0ff}
   background:linear-gradient(135deg,rgba(27,108,255,.12),transparent 60%);
   box-shadow:0 10px 40px rgba(11,26,58,.15);
 }
-.leistungen-img{
-  width:100%; height:100%;
-  object-fit:cover; display:block;
-}
+.leistungen-img{width:100%;height:100%;object-fit:cover;display:block}
 .leistungen-content .lead{font-size:18px;line-height:1.6;color:var(--text)}
 .features{display:grid;gap:10px;margin:14px 0 0}
 .feature{display:flex;gap:10px;align-items:flex-start;color:var(--text)}
@@ -143,29 +140,23 @@ footer a{color:#cfe0ff}
   .statement{flex-direction:column;align-items:flex-start}
 }
 
-/* ===== Wenger-Style Sections (edles Blau + Schwarz) ===== */
-
-/* Utility */
+/* ===== Wenger-Style Sections ===== */
 .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .kicker{color:var(--brand);font-weight:700}
 .lead-lg{font-size:clamp(18px,2.2vw,20px);line-height:1.7;color:var(--text)}
 .stack>*{margin:0}
 .stack>*+*{margin-top:14px}
 
-/* Zweispaltiges Layout */
 .split{
   display:grid;
   grid-template-columns:1.05fr 1fr;
   gap:56px;
   align-items:center;
 }
-@media (max-width:900px){
-  .split{grid-template-columns:1fr;gap:28px}
-}
+@media (max-width:900px){.split{grid-template-columns:1fr;gap:28px}}
 
-/* Medienrahmen mit edlem Look */
 .media-frame{
-  position:relative; border-radius:28px; overflow:hidden;
+  position:relative;border-radius:28px;overflow:hidden;
   background:
     radial-gradient(1000px 500px at 0% 0%, rgba(0,0,0,.15), transparent 60%),
     linear-gradient(135deg, rgba(27,108,255,.14), rgba(0,0,0,.06));
@@ -173,14 +164,12 @@ footer a{color:#cfe0ff}
 }
 .media-frame img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* Statement/Info-Zeile */
 .inline-note{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:#fff;
+  border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;
 }
 @media (max-width:900px){.inline-note{flex-direction:column;align-items:flex-start}}
 
-/* Feature-Liste im Wenger-Look */
 .features.wenger{display:grid;gap:12px;margin-top:14px}
 .features.wenger .item{display:flex;gap:12px;align-items:flex-start}
 .badge-check{
@@ -191,7 +180,6 @@ footer a{color:#cfe0ff}
   box-shadow:0 6px 16px rgba(0,0,0,.25), 0 0 0 2px rgba(27,108,255,.15) inset;
 }
 
-/* Abschnitt-Optiken */
 .section.wenger-light{
   background:linear-gradient(180deg,#ffffff 0%, #f4f7ff 100%);
   border-block:1px solid var(--line);
@@ -204,7 +192,6 @@ footer a{color:#cfe0ff}
 .section.wenger-dark .muted{color:#b6c5e6}
 .section.wenger-dark .inline-note{background:rgba(255,255,255,.06);border-color:rgba(219,231,255,.14);color:#e6edff}
 
-/* Typografieanpassungen */
 .wenger-h2{font-size:clamp(26px,3.2vw,38px);line-height:1.2;margin:0 0 8px}
 .wenger-h3{font-size:clamp(18px,2.5vw,22px);font-weight:700;margin:0 0 14px}
 
@@ -215,14 +202,15 @@ footer a{color:#cfe0ff}
   color:#e6edff;
   border-top:1px solid rgba(219,231,255,.08);
 }
+.contact-section .container{padding-bottom:8px}
 
 .contact-grid{
   display:grid;
   grid-template-columns:1.05fr 1fr;
   gap:32px;
-  align-items:start;
+  align-items:stretch;
 }
-@media (max-width:900px){ .contact-grid{ grid-template-columns:1fr } }
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
 
 .contact-card{
   background:rgba(255,255,255,.04);
@@ -251,42 +239,50 @@ footer a{color:#cfe0ff}
 }
 .form.dark input::placeholder,.form.dark textarea::placeholder{color:#9fb2dc}
 .form.dark input:focus,.form.dark textarea:focus{
-  outline:none; border-color:rgba(0,179,255,.6);
+  outline:none;
+  border-color:rgba(0,179,255,.6);
   box-shadow:0 0 0 3px rgba(0,179,255,.18);
 }
 
 /* Instagram-Bildrahmen */
 .ig-frame{
-  position:relative; overflow:hidden; border-radius:22px;
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
   background:
     radial-gradient(900px 500px at 100% 0%, rgba(27,108,255,.16), transparent 60%),
     linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.18));
   border:1px solid rgba(219,231,255,.12);
   box-shadow:0 18px 50px rgba(8,18,42,.35);
+  aspect-ratio:4 / 5;
 }
-.ig-frame img{width:100%; height:auto; display:block}
+.ig-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 
 /* IG-Overlay-Button */
 .ig-chip{
-  position:absolute; bottom:14px; right:14px;
-  display:inline-flex; align-items:center; gap:8px;
-  padding:10px 12px; border-radius:999px;
+  position:absolute;bottom:14px;right:14px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:999px;
   background:rgba(0,0,0,.55);
-  color:#fff; font-weight:600; font-size:14px;
-  transition:transform .2s ease, background .2s ease;
-  backdrop-filter: blur(4px);
+  color:#fff;font-weight:600;font-size:14px;
+  transition:transform .2s ease,background .2s ease;
+  backdrop-filter:blur(4px);
 }
-.ig-chip:hover{ transform:translateY(-2px); background:rgba(0,0,0,.7) }
-.ig-chip img{ width:18px; height:18px; filter:invert(1) }
+.ig-chip:hover{transform:translateY(-2px);background:rgba(0,0,0,.7)}
+.ig-chip img{width:18px;height:18px;filter:invert(1)}
 
-/* Buttons auf dunkel */
-.btn.on-dark{ background:linear-gradient(135deg,var(--brand),var(--brand2)) }
+.btn.on-dark{background:linear-gradient(135deg,var(--brand),var(--brand2))}
 .btn.on-dark.secondary{
   background:rgba(255,255,255,.06);
-  color:#e6edff; border:1px solid rgba(219,231,255,.16);
+  color:#e6edff;
+  border:1px solid rgba(219,231,255,.16);
 }
-.small-muted{ color:#9fb2dc; font-size:12px }
-
+.small-muted{color:#9fb2dc;font-size:12px}
 </style>
 
 </head>
