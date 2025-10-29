@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Iron-Coaching by Tim Eichholz – Personal Training & Coaching</title>
+  
+<style>
+/* ===== Farb-Theme (edel-blau) ===== */
+:root{
+  --bg:#f6f9ff;          /* Seitenhintergrund leicht bläulich */
+  --surface:#ffffff;     /* Karten/Boxen */
+  --surface-2:#eef4ff;   /* zart blau für abgesetzte Bereiche */
+  --text:#0b1a3a;        /* Tintenblau */
+  --muted:#5b6f92;       /* Blau-Grau */
+  --brand:#1b6cff;       /* Akzentblau */
+  --brand2:#00b3ff;      /* Verlaufspartner/Türkis */
+  --line:#dbe7ff;        /* Linien hellblau */
+}
+
+/* ===== Basics ===== */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(27,108,255,.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(0,179,255,.07), transparent 55%),
+    var(--bg);
+  line-height:1.5;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 16px}
+.topbar{background:#0b1a3a;color:#fff;font-size:14px}
+.flex{display:flex}.between{justify-content:space-between}.center{align-items:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.25rem}
+
+header{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:saturate(1.1) blur(6px);
+  background:rgba(255,255,255,.85);
+  border-bottom:1px solid var(--line);
+}
+.logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+
+.btn{background:var(--brand);color:#fff;border:0;border-radius:999px;padding:.7rem 1rem;font-weight:600;display:inline-flex;align-items:center}
+.btn.secondary{background:#e9f3ff;color:#0747a6;border:1px solid #bcd5ff}
+
+.hero{position:relative;overflow:hidden}
+.hero .bg{position:absolute;inset:0;z-index:-1}
+  
+/* edler, blauer Overlay-Verlauf im Hero */
+.hero .bg:before{content:"";position:absolute;inset:0;pointer-events:none;background:none;}
+
+}
+
+h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0}
+h2{font-size:clamp(24px,3vw,36px);margin:0}
+.muted{color:var(--muted)}
+
+.section{padding:64px 0}
+/* zart-blaue Sektionen */
+.section.alt{background:linear-gradient(180deg,var(--surface-2),#fff);border-block:1px solid var(--line)}
+
+.grid{display:grid;gap:20px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+.card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:0 6px 16px rgba(7,23,58,.06)}
+.card .p{padding:16px}
+
+.pill{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;background:var(--surface)}
+.gallery{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+.form input,.form textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.form textarea{min-height:140px;resize:vertical}
+
+footer{
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg,#0b1a3a,#08122a);
+  color:#e6edff;
+}
+footer a{color:#cfe0ff}
+.sm{font-size:14px}.xs{font-size:12px;color:#94a3b8}
+
+@media (max-width:768px){nav{display:none}}
+
+/* ===== Team-Layout & Animation (deins, belassen) ===== */
+.team-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:32px;align-items:center}
+@media (max-width:900px){.team-wrap{grid-template-columns:1fr}}
+.fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease-out forwards}
+.fade-up.delay-1{animation-delay:.15s}
+.fade-up.delay-2{animation-delay:.3s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.prose p{margin:0 0 14px}
+.prose .lead{font-size:18px;line-height:1.6;color:var(--text)}
+.prose .muted{color:var(--muted);font-size:16px}
+.profile-img{width:100%;height:520px;object-fit:cover;display:block}
+@media (max-width:900px){.profile-img{height:380px}}
+
+/* --- Leistungen (Layout) --- */
+.leistungen-wrap{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+.leistungen-media{
+  border-radius:24px;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(27,108,255,.12),transparent 60%);
+  box-shadow:0 10px 40px rgba(11,26,58,.15);
+}
+.leistungen-img{
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+}
+.leistungen-content .lead{font-size:18px;line-height:1.6;color:var(--text)}
+.features{display:grid;gap:10px;margin:14px 0 0}
+.feature{display:flex;gap:10px;align-items:flex-start;color:var(--text)}
+.check{
+  height:26px;width:26px;border-radius:999px;flex:0 0 26px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:700;
+  box-shadow:0 4px 12px rgba(27,108,255,.25);
+}
+.statement{
+  margin-top:20px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px 18px;
+  background:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.statement .cta{white-space:nowrap}
+
+@media (max-width:900px){
+  .leistungen-wrap{grid-template-columns:1fr;gap:28px}
+  .statement{flex-direction:column;align-items:flex-start}
+}
+
+/* ===== Wenger-Style Sections (edles Blau + Schwarz) ===== */
+
+/* Utility */
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.kicker{color:var(--brand);font-weight:700}
+.lead-lg{font-size:clamp(18px,2.2vw,20px);line-height:1.7;color:var(--text)}
+.stack>*{margin:0}
+.stack>*+*{margin-top:14px}
+
+/* Zweispaltiges Layout */
+.split{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:56px;
+  align-items:center;
+}
+@media (max-width:900px){
+  .split{grid-template-columns:1fr;gap:28px}
+}
+
+/* Medienrahmen mit edlem Look */
+.media-frame{
+  position:relative; border-radius:28px; overflow:hidden;
+  background:
+    radial-gradient(1000px 500px at 0% 0%, rgba(0,0,0,.15), transparent 60%),
+    linear-gradient(135deg, rgba(27,108,255,.14), rgba(0,0,0,.06));
+  box-shadow:0 18px 50px rgba(8,18,42,.25), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.media-frame img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Statement/Info-Zeile */
+.inline-note{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:#fff;
+}
+@media (max-width:900px){.inline-note{flex-direction:column;align-items:flex-start}}
+
+/* Feature-Liste im Wenger-Look */
+.features.wenger{display:grid;gap:12px;margin-top:14px}
+.features.wenger .item{display:flex;gap:12px;align-items:flex-start}
+.badge-check{
+  height:28px;width:28px;border-radius:999px;flex:0 0 28px;
+  display:inline-flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;
+  background:linear-gradient(135deg,#0e172e,#0b1a3a);
+  box-shadow:0 6px 16px rgba(0,0,0,.25), 0 0 0 2px rgba(27,108,255,.15) inset;
+}
+
+/* Abschnitt-Optiken */
+.section.wenger-light{
+  background:linear-gradient(180deg,#ffffff 0%, #f4f7ff 100%);
+  border-block:1px solid var(--line);
+}
+.section.wenger-dark{
+  background:linear-gradient(180deg,#0d111c,#0a1326);
+  color:#e6edff;
+  border-block:1px solid rgba(219,231,255,.08);
+}
+.section.wenger-dark .muted{color:#b6c5e6}
+.section.wenger-dark .inline-note{background:rgba(255,255,255,.06);border-color:rgba(219,231,255,.14);color:#e6edff}
+
+/* Typografieanpassungen */
+.wenger-h2{font-size:clamp(26px,3.2vw,38px);line-height:1.2;margin:0 0 8px}
+.wenger-h3{font-size:clamp(18px,2.5vw,22px);font-weight:700;margin:0 0 14px}
+
+  /* Kontakt-Section → dunkler Hintergrund wie „Über mich“ */
+#kontakt.section.wenger-dark{
+  background:linear-gradient(180deg,#0d111c,#0a1326);
+  color:#e6edff;
+  border-block:1px solid rgba(219,231,255,.08);
+}
+#kontakt.section.wenger-dark h2,
+#kontakt.section.wenger-dark h3{ color:#fff }
+#kontakt .muted{ color:#b6c5e6 }
+
+/* Formular bleibt hell & gut lesbar auf dunkel */
+#kontakt .contact-card{ background:rgba(255,255,255,.06); border-color:rgba(219,231,255,.14) }
+#kontakt .form input,#kontakt .form textarea{
+  background:rgba(255,255,255,.06); color:#e6edff; border-color:rgba(219,231,255,.18)
+}
+#kontakt .form input::placeholder,#kontakt .form textarea::placeholder{ color:#9fb2dc }
+#kontakt .form input:focus,#kontakt .form textarea:focus{
+  outline:none; border-color:rgba(0,179,255,.6); box-shadow:0 0 0 3px rgba(0,179,255,.18)
+}
+
+/* Instagram-Carousel */
+.ig-carousel{
+  position:relative; border-radius:22px; overflow:hidden;
+  border:1px solid rgba(219,231,255,.14);
+  background:linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.18));
+  box-shadow:0 18px 50px rgba(8,18,42,.35);
+  aspect-ratio:3/4;
+}
+.ig-track{
+  display:flex; height:100%; width:100%;
+  transition:transform .5s ease; will-change:transform;
+}
+.ig-slide{ min-width:100%; height:100% }
+.ig-slide img{ width:100%; height:100%; object-fit:cover; display:block }
+
+/* Pfeile */
+.ig-arrow{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(0,0,0,.5); color:#fff; border:1px solid rgba(255,255,255,.25);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; backdrop-filter:blur(4px);
+  transition:background .2s, transform .2s;
+}
+.ig-arrow:hover{ background:rgba(0,0,0,.7); transform:translateY(-50%) scale(1.04) }
+.ig-arrow.left{ left:12px } .ig-arrow.right{ right:12px }
+
+/* kleine Punkt-Navigation (optional) */
+.ig-dots{ position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:8px }
+.ig-dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); }
+.ig-dot.active{ background:#fff }
+
+</style>
+
+<link rel="stylesheet" href="mobile-tweaks.css">
+
+
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container flex between center" style="padding:8px 16px">
+<!-- Obere Leiste mit Instagram-Icon -->
+<div style="
+  background:#0b1a3a;
+  color:#e6edff;
+  padding:6px 0;
+  font-size:14px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+">
+  <a href="#kontakt" style="display:inline-flex;align-items:center;justify-content:center;">
+    <img 
+      src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" 
+      alt="Instagram Logo" 
+      style="width:20px;height:20px;filter:invert(1);transition:transform 0.3s;"
+      onmouseover="this.style.transform='scale(1.2)'" 
+      onmouseout="this.style.transform='scale(1)'"
+    >
+  </a>
+  <span style="opacity:0.8;">Folge mir auf Instagram</span>
+</div>
+
+      <div class="flex center gap-2">✉️ <span>maxtim241@gmail.com</span></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container flex between center" style="padding:16px 0">
+      <a class="flex center gap-3" href="#">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:700">Iron-Coaching by Tim Eichholz</div>
+          <div class="xs">Personal Training & Coaching</div>
+        </div>
+      </a>
+      <nav class="flex center gap-6 sm">
+        <a href="#team">Über mich</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#kontakt">Kontakt & Instagram</a>
+        <a class="btn" href="#kontakt">Termin vereinbaren</a>
+      </nav>
+    </div>
+  </header>
+
+ <!-- Hero -->
+<section class="hero" style="height:90vh; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:white;">
+  <div class="bg">
+    <img src="ruecken.jpg" 
+         alt="Tim Eichholz – Rückansicht Bodybuilding" 
+         style="width:100%; height:100%; object-fit:cover; object-position:50% 30%;">
+  </div>
+
+  <!-- Halbtransparentes Overlay für bessere Lesbarkeit -->
+  <div style="position:absolute; inset:0; background:linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.3)); z-index:1;"></div>
+
+  <div class="container" style="position:relative; z-index:2; max-width:900px; padding:0 20px;">
+    <h1 style="font-size:clamp(36px,5vw,56px); line-height:1.2; font-weight:700; margin-bottom:20px;">
+      Der Weg zu deinem <span style="color:var(--brand2);">Traumkörper</span>
+    </h1>
+
+    <p style="font-size:20px; color:#e2e8f0; max-width:680px; margin:0 auto 32px;">
+      Individuelles Personal Training, Ernährung & Coaching – für deine stärkste, gesündeste Version.
+    </p>
+
+    <div class="flex center gap-3" style="justify-content:center; flex-wrap:wrap;">
+      <a class="btn" href="#kontakt" style="padding:1rem 1.5rem; font-size:18px;">Jetzt Termin anfragen</a>
+      <a href="#leistungen" class="btn secondary" style="padding:1rem 1.5rem; font-size:18px;">Leistungen ansehen →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Zitat / Zwischenabschnitt (edel-blauer Stil) -->
+<section class="section" style="
+  background:radial-gradient(circle at 50% 0%, rgba(27,108,255,0.08), transparent 60%),
+             linear-gradient(180deg,#0b1a3a,#0d152e);
+  color:#e6edff;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+">
+  <div class="container" style="max-width:900px;position:relative;z-index:2;">
+    <blockquote style="
+      font-size:clamp(22px,2.5vw,30px);
+      font-weight:500;
+      line-height:1.5;
+      font-style:italic;
+      color:#eaf1ff;
+      position:relative;
+      padding:60px 20px;
+      margin:0;
+    ">
+      <span style="
+        position:absolute;
+        top:10px;
+        left:50%;
+        transform:translateX(-50%);
+        font-size:100px;
+        color:rgba(255,255,255,0.08);
+        font-family:serif;
+        line-height:0;
+      ">&#8220;</span>
+
+      <div style="position:relative;z-index:1;">
+        <span style="color:var(--brand2);font-weight:600;">Disziplin</span> ist, das zu tun, was getan werden muss –
+        auch wenn du keine Lust hast.<br>
+        <span style="color:var(--brand);font-weight:700;">So entsteht Erfolg.</span>
+      </div>
+
+      <footer style="
+        margin-top:30px;
+        font-size:16px;
+        color:#9fb2dc;
+        font-style:normal;
+        font-weight:400;
+        letter-spacing:0.05em;
+      ">
+      </footer>
+    </blockquote>
+  </div>
+
+  <!-- dezente Lichtreflexe im Hintergrund -->
+  <div style="
+    position:absolute;
+    top:-100px;left:50%;
+    width:600px;height:600px;
+    transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(0,179,255,0.18), transparent 70%);
+    filter:blur(80px);
+    opacity:0.6;
+    z-index:1;
+  "></div>
+</section>
+
+  
+<!-- === Über mich (Wenger-Stil, dunkel & edel) === -->
+<section id="team" class="section wenger-dark">
+  <div class="container split" style="align-items:stretch">
+
+    <!-- Textseite -->
+    <div class="stack" style="justify-content:center">
+      <div class="eyebrow">Über mich</div>
+      <h2 class="wenger-h2" style="color:#fff">Über mich – mein Weg zur Leidenschaft Bodybuilding</h2>
+
+      <p class="lead-lg" style="color:#dbe7ff">
+        Hey, ich freue mich, dass du den Weg auf meine Website gefunden hast. In diesem Text möchte ich dir einen Einblick in meine Geschichte geben – wie der Sport mein Leben verändert hat und warum ich heute Menschen dabei helfe, ihre beste Version zu werden.
+      </p>
+
+      <p class="muted">
+        Schon als kleiner Junge war Sport ein Teil meines Lebens – ob Fußball, Lauftraining oder Triathlon. Doch nichts davon hat mich wirklich erfüllt. Das änderte sich, als mein Vater mir eines Tages meine ersten Bodybuilding-Magazine vom Kiosk mitbrachte. In diesem Moment wurde ein Feuer in mir entfacht. Plötzlich hatte ich ein Ziel, eine Richtung. Ich begann zuerst zuhause zu trainieren, meldete mich später mit meinem Vater im Fitnessstudio an und schrieb sogar meine Projektarbeit in der Schule über Bodybuilding.
+      </p>
+
+      <p class="muted">
+        Doch das Leben stellt uns manchmal vor harte Prüfungen. Mit 16 hatte ich einen schweren Motorradunfall. Zwei Operationen, lange Ausfallzeit – mein Körper baute ab, und ich verlor das Gefühl für mich selbst. Als ich nach zwei Jahren Reha wieder in den Spiegel sah, erkannte ich mich kaum wieder. Es war einer der schwersten Momente meines Lebens.
+      </p>
+
+      <p class="muted">
+        Zum Glück gab es einen Freund, der mich nicht aufgeben ließ. Er nahm mich mit zum Boxen und holte mich zurück in die Welt des Sports. Dort habe ich eine wichtige Lektion gelernt: Es ist egal, wie oft du fällst – entscheidend ist, dass du wieder aufstehst.
+      </p>
+
+      <p class="muted">
+        Als während der Corona-Krise mein Boxverein schließen musste, gab ich nicht auf. Stattdessen kehrte ich zu meinen Wurzeln zurück – zum Krafttraining. Und nicht nur das Feuer, sondern die Leidenschaft zum Bodybuilding brannte stärker denn je. Ich begann auf Wettkampfebene zu starten und lernte, was wahre Disziplin bedeutet. Was es heißt, in einer Diät an seine Grenzen zu gehen. Was mentaler Schmerz ist – und wie gut sich Erfolg danach anfühlt.
+      </p>
+
+      <p class="muted">
+        Neben meinem Beruf als Bäcker begann ich Trainings- und Ernährungswissenschaften zu studieren. Heute vereine ich fundiertes Wissen mit über einem Jahrzehnt Erfahrung aus der Praxis – und genau dieses Paket bekommst du mit mir als Coach: <b>Realität statt Fitness-Mythen, Erfahrung statt Theorie, Resultate statt Ausreden.</b>
+      </p>
+
+      <p class="muted">
+        Wenn du jemanden suchst, der dich versteht, dich fordert und mit dir kämpft – dann bist du hier richtig. Lass uns gemeinsam deine beste Form erreichen.
+      </p>
+
+      <div class="inline-note">
+        <div><b>Bereit für den nächsten Schritt?</b> Lass uns dein Ziel definieren und einen Plan bauen.</div>
+        <a class="btn" href="#kontakt">Kontakt aufnehmen</a>
+      </div>
+
+      <div class="xs" style="margin-top:10px;color:#9fb2dc">Tim Eichholz – Personal Trainer & Coach</div>
+    </div>
+
+    <!-- Bildseite mit Instagram-Slider -->
+<div class="media-frame" style="
+  background:
+    radial-gradient(900px 500px at 100% 0%, rgba(27,108,255,.18), transparent 60%),
+    linear-gradient(135deg, rgba(0,0,0,.35), rgba(0,0,0,.1));
+  padding:0; overflow:hidden;
+">
+  <div class="ig-carousel" id="aboutCarousel" style="aspect-ratio:auto;height:100%">
+    <div class="ig-track">
+      <div class="ig-slide"><img src="Pose3.jpeg" alt="Instagram Bild 1"></div>
+      <div class="ig-slide"><img src="Pose1.jpeg" alt="Instagram Bild 2"></div>
+      <div class="ig-slide"><img src="Pose2.jpeg" alt="Instagram Bild 3"></div>
+      <div class="ig-slide"><img src="Pose4.jpeg" alt="Instagram Bild 4"></div>
+      <div class="ig-slide"><img src="ruecken.jpg" alt="Instagram Bild 5"></div>
+    </div>
+
+    <button type="button" class="ig-arrow left"  aria-label="Vorheriges Bild">‹</button>
+    <button type="button" class="ig-arrow right" aria-label="Nächstes Bild">›</button>
+
+    <div class="ig-dots"></div>
+  </div>
+</div>
+
+</section>
+
+<!-- === Meine Leistungen (Wenger-Stil, hell) === -->
+<section id="leistungen" class="section wenger-light">
+  <div class="container split">
+
+    <!-- Bildseite -->
+    <div class="media-frame">
+      <img src="Pose1.jpeg" alt="Personal Training – Tim Eichholz">
+    </div>
+
+    <!-- Textseite -->
+    <div class="stack">
+      <div class="eyebrow">Angebot</div>
+      <h2 class="wenger-h2">Meine Leistungen</h2>
+      <h3 class="wenger-h3 kicker">Dein Weg zu deiner besten Form beginnt hier</h3>
+
+      <p class="lead-lg">
+        Du willst stärker werden – körperlich und mental. Du willst deine Ernährung endlich verstehen, 
+        deine Fitness auf das nächste Level bringen und den Lebensstil leben, den du dir schon lange wünschst. 
+        Dann bist du hier genau richtig.
+      </p>
+
+      <p class="muted">
+        Mit meinem Coaching bekommst du keine leeren Versprechungen, sondern echte Ergebnisse. 
+        Ich helfe dir dabei, dein volles Potenzial zu entfalten – ganz egal, ob du Anfänger bist oder bereits 
+        Erfahrung im Fitness- oder Bodybuildingbereich hast. Gemeinsam schaffen wir eine starke Basis und 
+        entwickeln Schritt für Schritt deinen individuellen Erfolgsplan.
+      </p>
+
+      <div class="features wenger">
+        <div class="item"><span class="badge-check">✓</span><span><b>Personalisiertes Training</b> – effektive Workouts, abgestimmt auf deine Ziele.</span></div>
+        <div class="item"><span class="badge-check">✓</span><span><b>Strukturierte Ernährungspläne</b> – leicht verständlich und alltagstauglich.</span></div>
+        <div class="item"><span class="badge-check">✓</span><span><b>Motivation & Mindset</b> – ich begleite dich auf jedem Schritt deiner Reise.</span></div>
+        <div class="item"><span class="badge-check">✓</span><span><b>Nachhaltige Ergebnisse</b> – ohne Jojo-Effekt, ohne sinnlose Mythen.</span></div>
+      </div>
+
+      <p class="muted">
+        Ich zeige dir, wie du dauerhaft stärker, fitter und selbstbewusster wirst – nicht durch Abkürzungen, 
+        sondern durch ein System, das funktioniert. Wenn du bereit bist, Verantwortung zu übernehmen und das 
+        Beste aus dir herauszuholen, dann lass uns gemeinsam starten.
+      </p>
+
+      <div class="inline-note">
+        <div>
+          <b>Dein Körper. Deine Ziele. Deine Transformation.</b><br>
+          Jetzt ist der richtige Zeitpunkt.
+        </div>
+        <a class="btn" href="#kontakt">Jetzt Termin anfragen</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Kontakt -->
+<!-- Styles für Symmetrie + Trennstrich -->
+<style>
+  #kontakt .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    position:relative;
+  }
+  /* Vertikaler, dezenter Divider */
+  #kontakt .v-divider{
+    position:absolute; top:0; bottom:0; left:50%;
+    width:1px;
+    background:linear-gradient(180deg, rgba(219,231,255,0), rgba(219,231,255,.20), rgba(219,231,255,0));
+    transform:translateX(-0.5px);
+    opacity:.8;
+    pointer-events:none;
+  }
+  /* Einheitliche Überschriften-Größe im Abschnitt */
+  #kontakt h2{ font-size:clamp(24px,3vw,36px); margin:0 0 12px 0; color:#fff; }
+  /* Mobil: 1-spaltig, Divider ausblenden */
+  @media (max-width: 900px){
+    #kontakt .two-col{ grid-template-columns:1fr; }
+    #kontakt .v-divider{ display:none; }
+  }
+</style>
+
+<section id="kontakt" class="section wenger-dark">
+  <div class="container two-col">
+    <!-- Dekorative Mittel-Linie -->
+    <div class="v-divider" aria-hidden="true"></div>
+
+    <!-- Linke Seite: Kontaktformular -->
+    <div>
+      <h2>Kontakt</h2>
+
+      <!-- Info-Kasten -->
+      <div class="card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
+        <p style="color:#cbd5e1; font-size:15px; line-height:1.6; margin:0;">
+          Nutze das Formular unten, um mir eine Nachricht zu schicken – egal ob du Fragen zum Coaching, zur Trainingsplanung oder zu Ernährungskonzepten hast. Ich melde mich schnellstmöglich zurück.
+        </p>
+      </div>
+
+      <!-- Kontaktformular -->
+      <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:24px">
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <input name="name" placeholder="Ihr Name *" required>
+          <input type="email" name="email" placeholder="Ihre E-Mail *" required>
+        </div>
+        <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
+        <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
+
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
+
+        <div class="xs" style="margin:8px 0 12px; color:#64748b;">
+          Mit dem Absenden akzeptierst du unsere Datenschutzhinweise. (PLATZHALTER)
+        </div>
+
+        <button type="submit" class="btn">Anfrage senden</button>
+        <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
+      </form>
+
+      <script>
+        const form = document.getElementById('kontakt-form');
+        const statusEl = document.getElementById('form-status');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          statusEl.textContent = 'Wird gesendet …';
+          const data = new FormData(form);
+          try {
+            const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+            if (res.ok) { window.location.href = 'danke.html'; }
+            else {
+              const json = await res.json().catch(() => ({}));
+              statusEl.textContent = json.errors
+                ? json.errors.map(err => err.message).join(', ')
+                : 'Senden fehlgeschlagen. Bitte versuche es später erneut.';
+            }
+          } catch (err) {
+            statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
+          }
+        });
+      </script>
+    </div>
+
+    <!-- Rechte Seite: Instagram -->
+    <div>
+      <h2>Instagram</h2>
+      <p class="muted" style="margin:0 0 12px 0;">
+        Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.
+      </p>
+
+      <!-- Klickbares Instagram-Bild -->
+      <a href="https://www.instagram.com/t.eichholz/" target="_blank" 
+         style="display:block;position:relative;overflow:hidden;border-radius:16px;margin-top:4px;">
+        <img src="Pose4.jpeg" alt="Tim Eichholz – Bühnenfoto" style="width:100%;height:auto;display:block;border-radius:16px;">
+        <!-- Instagram-Logo als Overlay -->
+        <div style="position:absolute;bottom:16px;right:16px;background:rgba(0,0,0,0.6);border-radius:50%;padding:10px;display:flex;align-items:center;justify-content:center;transition:background .3s;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram Logo" style="width:26px;height:26px;filter:invert(1);">
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+ 
+
+  <!-- Callout -->
+  <section class="section" style="text-align:center;background:linear-gradient(90deg,rgba(14,165,233,.08),rgba(6,182,212,.08))">
+    <div class="container">
+      <h3 style="margin:0 0 6px 0;font-size:28px">Bereit für deinen Termin?</h3>
+      <p class="muted">Schreibe mir gerne eine Mail - ich melde mich zeitnah.</p>
+      <div class="flex center gap-3" style="justify-content:center;margin-top:10px;flex-wrap:wrap">
+        <a class="btn secondary" href="mailto:maxtim241@gmail.com?subject=Anfrage%20über%20deine%20Website&body=Hallo%20Tim,%0D%0A%0D%0AIch%20möchte%20mich%20gerne%20über%20dein%20Coaching%20informieren.%20%0D%0A%0D%0AMit%20freundlichen%20Grüßen,%0D%0A%5BDein%20Name%5D">
+    ✉️ Nachricht senden
+  </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer>
+  <div class="container" 
+       style="padding:40px 0;
+              display:grid;
+              grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+              gap:24px;
+              font-size:14px;
+              align-items:start;">
+
+    <!-- Logo + Beschreibung -->
+    <div>
+      <div class="flex items-center gap-3" 
+           style="display:flex;align-items:center;margin-bottom:10px;">
+        <div class="logo" 
+             style="height:32px;width:32px;background:linear-gradient(135deg,#007bff,#00b4d8);border-radius:8px;">
+        </div>
+        <b style="font-size:15px;line-height:1;">Iron-Coaching by Tim Eichholz</b>
+      </div>
+      <p class="muted" style="margin-top:6px;max-width:260px;">
+        Individuelles Training, klare Ernährungskonzepte und Coaching mit Leidenschaft – 
+        für sichtbare Erfolge und nachhaltige Motivation.
+      </p>
+    </div>
+
+    <!-- Kontakt -->
+    <div>
+      <b style="font-size:15px;line-height:1;">Kontakt</b>
+      <ul class="muted" style="list-style:none;padding:0;margin:10px 0 0;">
+        <li>✉️ 
+          <a href="mailto:maxtim241@gmail.com" style="color:#e2e8f0;text-decoration:none;">
+            maxtim241@gmail.com
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Schnellzugriff -->
+    <div>
+      <b style="font-size:15px;line-height:1;">Schnellzugriff</b>
+      <ul style="list-style:none;padding:0;margin:10px 0 0;">
+        <li><a class="muted" href="#team">Über mich</a></li>
+        <li><a class="muted" href="#leistungen">Leistungen</a></li>
+        <li><a class="muted" href="#kontakt">Kontakt & Instagram</a></li>
+      </ul>
+    </div>
+
+    <!-- Rechtliches -->
+    <div>
+      <b style="font-size:15px;line-height:1;">Rechtliches</b>
+      <ul style="list-style:none;padding:0;margin:10px 0 0;">
+        <li><a class="muted" href="#impressum">Impressum</a></li>
+        <li><a class="muted" href="#datenschutz">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid var(--line);padding:14px 0;text-align:center" class="xs">
+    © <span id="y"></span> Iron Coaching by Tim Eichholz – Alle Rechte vorbehalten.
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</footer>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  
+<script>
+  // Sanftes, langsames Scrollen
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+
+      const startPosition = window.pageYOffset;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 1200; // <- hier kannst du die Geschwindigkeit anpassen (ms)
+      let start = null;
+
+      function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const progress = currentTime - start;
+        const ease = progress / duration;
+        window.scrollTo(0, startPosition + distance * ease);
+        if (progress < duration) requestAnimationFrame(animation);
+      }
+
+      requestAnimationFrame(animation);
+    });
+  });
+</script>
+
+<script>
+(function(){
+  const carousel = document.getElementById('igCarousel');
+  if(!carousel) return;
+
+  const track = carousel.querySelector('.ig-track');
+  const slides = Array.from(track.children);
+  const prev = carousel.querySelector('.left');
+  const next = carousel.querySelector('.right');
+  const dotsWrap = carousel.querySelector('.ig-dots');
+
+  let index = 0;
+
+  // Dots erzeugen
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'ig-dot' + (i===0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function update(){
+    track.style.transform = `translateX(-${index*100}%)`;
+    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+  }
+  function goTo(i){
+    index = (i + slides.length) % slides.length;
+    update();
+  }
+
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  // Swipe (mobil)
+  let startX = null;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX }, {passive:true});
+  track.addEventListener('touchmove',  e => {
+    if(startX===null) return;
+    const dx = e.touches[0].clientX - startX;
+    if(Math.abs(dx) > 50){
+      goTo(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    }
+  }, {passive:true});
+})();
+</script>
+  
+<script>
+(function(){
+  const carousel = document.getElementById('aboutCarousel');
+  if(!carousel) return;
+
+  const track = carousel.querySelector('.ig-track');
+  const slides = Array.from(track.children);
+  const prev = carousel.querySelector('.left');
+  const next = carousel.querySelector('.right');
+  const dotsWrap = carousel.querySelector('.ig-dots');
+
+  let index = 0;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'ig-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    update();
+  }
+
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  // Swipe auf Mobilgeräten
+  let startX = null;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX }, { passive: true });
+  track.addEventListener('touchmove', e => {
+    if (startX === null) return;
+    const dx = e.touches[0].clientX - startX;
+    if (Math.abs(dx) > 50) {
+      goTo(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    }
+  }, { passive: true });
+})();
+</script>
+
+
+</body>
+</html>
