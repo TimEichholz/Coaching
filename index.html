@@ -837,5 +837,28 @@ footer .container{ align-items:start; }
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggle(false); });
 })();
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('header .main-nav');
+  const overlay = document.querySelector('.nav-overlay');
+
+  if (!btn || !nav || !overlay) return;
+
+  function toggle(open) {
+    nav.classList.toggle('open', open);
+    btn.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  btn.addEventListener('click', () => toggle(!nav.classList.contains('open')));
+  overlay.addEventListener('click', () => toggle(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+});
+</script>
+
 </body>
 </html>
