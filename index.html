@@ -282,6 +282,31 @@ footer a{color:#cfe0ff}
 .ig-dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); }
 .ig-dot.active{ background:#fff }
 
+/* === FIX: Header unter der Instagram-Leiste platzieren === */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-h);
+  z-index: 1001;
+}
+
+header {
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  z-index: 1000;
+}
+
+/* Damit der Seiteninhalt nicht unter die fixierten Leisten rutscht */
+body {
+  padding-top: calc(var(--topbar-h) + var(--header-h));
+}
+
+
 </style>
 
 <link rel="stylesheet" href="mobile-tweaks.css">
