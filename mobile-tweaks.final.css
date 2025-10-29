@@ -1,0 +1,125 @@
+
+/* ===== Mobile-first polish for all phones ===== */
+
+/* Better text rendering and zoom behavior on iOS */
+html { -webkit-text-size-adjust: 100%; }
+* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+/* Container padding on small screens */
+@media (max-width: 900px){
+  .container { padding: 0 14px; }
+  .section { padding: 44px 0; }
+}
+
+/* Tiny phones */
+@media (max-width: 480px){
+  .container { padding: 0 12px; }
+  .section { padding: 36px 0; }
+}
+
+/* Header & topbar */
+@media (max-width: 900px){
+  header .container { padding: 10px 0 !important; }
+  header a.btn { padding: .6rem .9rem; }
+  .logo { height: 32px; width: 32px; border-radius: 10px; }
+}
+
+/* Hide the topbar label on very small phones but keep icon */
+@media (max-width: 420px){
+  .topbar span { display:none; }
+}
+
+/* Navigation already hidden at 768px; ensure CTA visible */
+@media (max-width: 768px){
+  nav { display:none !important; }
+}
+
+/* Hero */
+@media (max-width: 900px){
+  .hero { height: 72vh !important; }
+  .hero .container h1 { font-size: clamp(28px, 7vw, 40px) !important; }
+  .hero .container p { font-size: 16px !important; }
+  .hero a.btn, .hero a.btn.secondary { font-size: 16px !important; padding: .85rem 1.1rem !important; }
+}
+@media (max-width: 480px){
+  .hero { height: 66vh !important; }
+}
+
+/* Quote block spacing */
+@media (max-width: 900px){
+  blockquote { padding: 36px 16px !important; }
+}
+
+/* Split layouts -> one column */
+@media (max-width: 900px){
+  .split { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .team-wrap { grid-template-columns: 1fr !important; gap: 24px !important; }
+}
+
+/* Media frame height hint on mobile to prevent huge images */
+@media (max-width: 900px){
+  .media-frame { border-radius: 20px; }
+  .media-frame img { max-height: 60vh; object-fit: cover; }
+}
+
+/* Features list spacing */
+@media (max-width: 900px){
+  .features.wenger { gap: 10px; }
+  .badge-check { height: 24px; width: 24px; flex: 0 0 24px; font-size: 14px; }
+}
+
+/* Kontakt: 2 -> 1 Spalte + remove divider; inputs accessible */
+@media (max-width: 900px){
+  #kontakt .two-col { grid-template-columns: 1fr !important; gap: 20px !important; }
+  #kontakt .v-divider { display: none !important; }
+  #kontakt .form input, #kontakt .form textarea { font-size: 16px; } /* avoid iOS zoom */
+  #kontakt .card { border-radius: 14px; }
+}
+
+/* IG carousel arrows & dots -> bigger touch targets */
+@media (max-width: 900px){
+  .ig-arrow { width: 44px; height: 44px; }
+}
+@media (max-width: 420px){
+  .ig-arrow { width: 40px; height: 40px; }
+  .ig-dots { bottom: 8px; }
+}
+
+/* Footer stacks cleanly */
+@media (max-width: 900px){
+  footer .container { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+}
+@media (max-width: 600px){
+  footer .container { grid-template-columns: 1fr !important; }
+  footer .container .muted { max-width: none !important; }
+}
+
+/* Buttons full-width option on tiny phones */
+@media (max-width: 420px){
+  .btn { width: 100%; justify-content: center; }
+}
+
+/* Reduce motion preferences */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+
+/* === Stronger mobile header spacing == */
+@media (max-width: 900px){
+  :root{ --header-h: 60px; }
+  body { padding-top: var(--header-h); }
+}
+
+/* Make sure topbar doesn't double-stack padding */
+@media (max-width: 900px){
+  .topbar .container{ padding: 6px 12px !important; }
+}
+
+/* Footer visual tweaks to avoid cramped look */
+@media (max-width: 900px){
+  footer { padding-top: 36px; }
+  footer b { display:block; margin-bottom: 8px; }
+  footer .container > div { padding: 4px 0; }
+}
