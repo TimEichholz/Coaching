@@ -528,68 +528,70 @@ footer a{color:#cfe0ff}
 </section>
 
 
-<!-- Kontakt & Anfahrt -->
+<!-- Kontakt -->
 <section id="kontakt" class="section wenger-dark">
   <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
     <!-- Linke Seite: Kontaktformular -->
-    <div>
-      <h2>Kontakt</h2>
-      <div class="card">
-        <div class="p">
-          <p style="color:#e2e8f0; font-size:15px; line-height:1.5; margin-bottom:10px;">
-            Nutzen Sie das Formular unten, um mir eine Nachricht zu schicken – egal ob Sie Fragen zum Coaching, zur Trainingsplanung oder zu Ernährungskonzepten haben. Ich melde mich schnellstmöglich zurück.
-          </p>
-          <div class="flex gap-3" style="align-items:center; margin-top:8px;">
-            ✉️ 
-            <a href="mailto:maxtim241@gmail.com" 
-               style="color:#ffffff; text-decoration:none; font-weight:500;">
-              maxtim241@gmail.com
-            </a>
-          </div>
-        </div>
-      </div>
+   <div>
+  <h2>Kontakt</h2>
 
-      <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:20px">
-        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <input name="name" placeholder="Ihr Name *" required>
-          <input type="email" name="email" placeholder="Ihre E-Mail *" required>
-        </div>
-        <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
-        <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
-
-        <input type="text" name="_gotcha" style="display:none">
-        <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
-
-        <div class="xs" style="margin:8px 0 12px">
-          Mit dem Absenden akzeptieren Sie unsere Datenschutzhinweise. (PLATZHALTER)
-        </div>
-
-        <button type="submit" class="btn">Anfrage senden</button>
-        <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
-      </form>
-
-      <script>
-        const form = document.getElementById('kontakt-form');
-        const statusEl = document.getElementById('form-status');
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          statusEl.textContent = 'Wird gesendet …';
-          const data = new FormData(form);
-          try {
-            const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-            if (res.ok) { window.location.href = 'danke.html'; }
-            else {
-              const json = await res.json().catch(() => ({}));
-              statusEl.textContent = json.errors
-                ? json.errors.map(err => err.message).join(', ')
-                : 'Senden fehlgeschlagen. Bitte versuchen Sie es später erneut.';
-            }
-          } catch (err) {
-            statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
-          }
-        });
-      </script>
+  <!-- Info-Kasten -->
+  <div class="card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
+    <p style="color:#cbd5e1; font-size:15px; line-height:1.6; margin-bottom:12px;">
+      Nutze das Formular unten, um mir eine Nachricht zu schicken – egal ob du Fragen zum Coaching, zur Trainingsplanung oder zu Ernährungskonzepten hast. Ich melde mich schnellstmöglich zurück.
+    </p>
+    <div class="flex gap-3" style="align-items:center; margin-top:8px;">
+      ✉️ 
+      <a href="mailto:maxtim241@gmail.com" 
+         style="color:#60a5fa; text-decoration:none; font-weight:500;">
+        maxtim241@gmail.com
+      </a>
     </div>
+  </div>
+
+  <!-- Kontaktformular -->
+  <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:24px">
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+      <input name="name" placeholder="Ihr Name *" required>
+      <input type="email" name="email" placeholder="Ihre E-Mail *" required>
+    </div>
+    <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
+    <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
+
+    <input type="text" name="_gotcha" style="display:none">
+    <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
+
+    <div class="xs" style="margin:8px 0 12px; color:#64748b;">
+      Mit dem Absenden akzeptierst du unsere Datenschutzhinweise. (PLATZHALTER)
+    </div>
+
+    <button type="submit" class="btn">Anfrage senden</button>
+    <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById('kontakt-form');
+    const statusEl = document.getElementById('form-status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Wird gesendet …';
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) { window.location.href = 'danke.html'; }
+        else {
+          const json = await res.json().catch(() => ({}));
+          statusEl.textContent = json.errors
+            ? json.errors.map(err => err.message).join(', ')
+            : 'Senden fehlgeschlagen. Bitte versuche es später erneut.';
+        }
+      } catch (err) {
+        statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
+      }
+    });
+  </script>
+</div>
+
 
 
     <!-- Rechte Seite: Instagram -->
