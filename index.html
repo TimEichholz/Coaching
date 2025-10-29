@@ -20,6 +20,7 @@
 
 /* ===== Basics ===== */
 *{box-sizing:border-box}
+/* Basis */
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
@@ -29,34 +30,55 @@ body{
     radial-gradient(900px 500px at -10% 20%, rgba(0,179,255,.07), transparent 55%),
     var(--bg);
   line-height:1.5;
+  /* WICHTIG: Platz für Topbar + Header schaffen */
+  padding-top: calc(var(--header-h) + 40px);
 }
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .container{max-width:1120px;margin:0 auto;padding:0 16px}
-.topbar{background:#0b1a3a;color:#fff;font-size:14px}
 .flex{display:flex}.between{justify-content:space-between}.center{align-items:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.25rem}
 
-header{
-  position:sticky;top:0;z-index:20;
-  backdrop-filter:saturate(1.1) blur(6px);
-  background:rgba(255,255,255,.85);
-  border-bottom:1px solid var(--line);
+/* Topbar: fixiert + transparent + Blur */
+.topbar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1001;
+  background: rgba(11,26,58,.25);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  color:#fff;
+  font-size:14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
-.logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
 
+/* Header: fixiert, unter der Topbar */
+header{
+  position: fixed;
+  top: 40px; /* exakt die Höhe der Topbar */
+  left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(10,20,40,0.20);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  border-bottom:1px solid rgba(255,255,255,0.10);
+}
+
+.logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
 .btn{background:var(--brand);color:#fff;border:0;border-radius:999px;padding:.7rem 1rem;font-weight:600;display:inline-flex;align-items:center}
 .btn.secondary{background:#e9f3ff;color:#0747a6;border:1px solid #bcd5ff}
 
+/* Hero */
 .hero{position:relative;overflow:hidden}
 .hero .bg{position:absolute;inset:0;z-index:-1}
-  
 /* edler, blauer Overlay-Verlauf im Hero */
-.hero .bg:before{content:"";position:absolute;inset:0;pointer-events:none;background:none;}
-
+.hero .bg:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:none;
 }
 
 h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0}
@@ -64,15 +86,12 @@ h2{font-size:clamp(24px,3vw,36px);margin:0}
 .muted{color:var(--muted)}
 
 .section{padding:64px 0}
-/* zart-blaue Sektionen */
 .section.alt{background:linear-gradient(180deg,var(--surface-2),#fff);border-block:1px solid var(--line)}
 
 .grid{display:grid;gap:20px}
 .grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-
 .card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:0 6px 16px rgba(7,23,58,.06)}
 .card .p{padding:16px}
-
 .pill{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;background:var(--surface)}
 .gallery{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 
@@ -267,35 +286,20 @@ footer a{color:#cfe0ff}
 
 </head>
 <body>
+  
   <!-- Topbar -->
-  <div class="topbar">
-    <div class="container flex between center" style="padding:8px 16px">
-<!-- Obere Leiste mit Instagram-Icon -->
-<div style="
-  background:#0b1a3a;
-  color:#e6edff;
-  padding:6px 0;
-  font-size:14px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:8px;
-">
-  <a href="#kontakt" style="display:inline-flex;align-items:center;justify-content:center;">
-    <img 
-      src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" 
-      alt="Instagram Logo" 
-      style="width:20px;height:20px;filter:invert(1);transition:transform 0.3s;"
-      onmouseover="this.style.transform='scale(1.2)'" 
-      onmouseout="this.style.transform='scale(1)'"
-    >
-  </a>
-  <span style="opacity:0.8;">Folge mir auf Instagram</span>
-</div>
-
-      <div class="flex center gap-2">✉️ <span>maxtim241@gmail.com</span></div>
+<div class="topbar">
+  <div class="container flex between center" style="padding:8px 16px">
+    <div class="flex center gap-2">
+      <a href="https://www.instagram.com/t.eichholz/" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px;height:20px;filter:invert(1)">
+      </a>
+      <span style="opacity:.8">Folge mir auf Instagram</span>
     </div>
+
+    <div class="flex center gap-2">✉️ <span>maxtim241@gmail.com</span></div>
   </div>
+</div>
 
   <!-- Header -->
   <header>
