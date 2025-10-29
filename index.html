@@ -344,19 +344,36 @@ footer .container{ align-items:start; }
 </div>
 <!-- Header -->
 <header>
-<div class="container flex between center" style="padding:16px 0"><a class="flex center gap-3" href="#">
-<div class="logo"></div>
-<div>
-<div style="font-weight:700">Iron-Coaching by Tim Eichholz</div>
-<div class="xs">Personal Training &amp; Coaching</div>
-</div>
-</a><button aria-label="Menü öffnen/schließen" class="menu-toggle"><span></span><span></span><span></span></button><nav class="main-nav">
-<a href="#team">Über mich</a>
-<a href="#leistungen">Leistungen</a>
-<a href="#kontakt">Kontakt &amp; Instagram</a>
-<a class="btn" href="#kontakt">Termin vereinbaren</a>
-</nav></div>
-<div class="nav-overlay"></div></header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+    <!-- Brand -->
+    <a class="flex center gap-3" href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <div class="logo" style="height:32px;width:32px;background:linear-gradient(135deg,#007bff,#00b4d8);border-radius:8px;"></div>
+      <div>
+        <div style="font-weight:700;color:#0b1a3a;">Iron-Coaching by Tim Eichholz</div>
+        <div class="xs">Personal Training & Coaching</div>
+      </div>
+    </a>
+
+    <!-- Hamburger -->
+    <button class="menu-toggle" aria-label="Menü öffnen/schließen" style="display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;background:none;border:0;cursor:pointer;z-index:1001;">
+      <span style="display:block;height:3px;width:100%;background:#0b1a3a;border-radius:2px;transition:.25s"></span>
+      <span style="display:block;height:3px;width:100%;background:#0b1a3a;border-radius:2px;transition:.25s"></span>
+      <span style="display:block;height:3px;width:100%;background:#0b1a3a;border-radius:2px;transition:.25s"></span>
+    </button>
+
+    <!-- NAV: WICHTIG -> class="main-nav" -->
+    <nav class="main-nav" style="display:flex;gap:24px;align-items:center;">
+      <a href="#team">Über mich</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="btn" href="#kontakt" style="background:#1b6cff;color:#fff;border:0;border-radius:999px;padding:.6rem .9rem;font-weight:600;">Termin vereinbaren</a>
+    </nav>
+  </div>
+
+  <!-- Overlay für Mobile (muss im DOM existieren!) -->
+  <div class="nav-overlay" style="display:none;position:fixed;inset:0;background:rgba(8,18,42,.45);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:999;"></div>
+</header>
+
 <!-- Hero -->
 <section class="hero" style="height:90vh; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:white;">
 <div class="bg">
@@ -819,8 +836,7 @@ footer .container{ align-items:start; }
 })();
 </script>
 
-<!-- Menü: EINZIGER Script-Block -->
-<script>
+<<script>
 document.addEventListener("DOMContentLoaded", function() {
   const btn = document.querySelector('.menu-toggle');
   const nav = document.querySelector('header .main-nav');
@@ -834,6 +850,7 @@ document.addEventListener("DOMContentLoaded", function() {
     overlay.classList.toggle('open', open);
     document.documentElement.style.overflow = open ? 'hidden' : '';
     document.body.style.overflow = open ? 'hidden' : '';
+    overlay.style.display = open ? 'block' : 'none';
   }
 
   // Öffnen/Schließen per Button
@@ -841,35 +858,10 @@ document.addEventListener("DOMContentLoaded", function() {
   // Schließen per Overlay
   overlay.addEventListener('click', () => setOpen(false));
   // Schließen per ESC
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
 });
 </script>
 
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const btn = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('header .main-nav');
-  const overlay = document.querySelector('.nav-overlay');
-
-  if (!btn || !nav || !overlay) return;
-
-  btn.addEventListener('click', () => {
-    const open = !nav.classList.contains('open');
-    nav.classList.toggle('open', open);
-    btn.classList.toggle('open', open);
-    overlay.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-
-  overlay.addEventListener('click', () => {
-    nav.classList.remove('open');
-    btn.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
-</script>
 
 </script>
 
