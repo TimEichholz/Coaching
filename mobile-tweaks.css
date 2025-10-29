@@ -122,4 +122,22 @@ html { -webkit-text-size-adjust: 100%; }
   footer { padding-top: 36px; }
   footer b { display:block; margin-bottom: 8px; }
   footer .container > div { padding: 4px 0; }
+  
+}
+/* ==== Mobile Nav Fix: überschreibt alte "nav {display:none}" Regeln ==== */
+@media (max-width: 900px){
+  header .main-nav{
+    display: flex !important;      /* sichtbar machen, nicht mehr display:none */
+    position: fixed; inset: 0;     /* Vollbild-Overlay-Menü */
+    right: -100%;                  /* Start: außerhalb des Screens */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    background: rgba(11,26,58,.96);
+    transition: right .3s ease;
+    z-index: 1000;
+    padding: 24px;
+  }
+  header .main-nav.open{ right: 0; }  /* hereinschieben */
 }
