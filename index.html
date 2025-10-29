@@ -260,6 +260,34 @@ footer a{color:#cfe0ff}
 .ig-dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); }
 .ig-dot.active{ background:#fff }
 
+.btn{
+  background:var(--brand);
+  color:#fff;
+  border:0;
+  border-radius:999px;
+  padding:.7rem 1.5rem;      /* mehr seitlicher Abstand */
+  font-weight:600;
+  font-size:1rem;            /* einheitliche Textgröße */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;        /* kein Zeilenumbruch */
+  text-align:center;
+  transition:background .25s ease, transform .15s ease;
+}
+
+.btn:hover{
+  background:var(--brand2);
+  transform:translateY(-2px);
+}
+
+.btn.secondary{
+  background:#e9f3ff;
+  color:#0747a6;
+  border:1px solid #bcd5ff;
+}
+
+
 </style>
 
 <link rel="stylesheet" href="mobile-tweaks.css">
