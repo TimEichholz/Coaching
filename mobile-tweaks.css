@@ -104,3 +104,77 @@ html { -webkit-text-size-adjust: 100%; }
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+<style>
+/* ========== Hamburger Menü ========== */
+.menu-toggle {
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  width:26px;
+  height:20px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:0;
+  z-index:1001;
+}
+.menu-toggle span {
+  display:block;
+  height:3px;
+  width:100%;
+  background:#fff;
+  border-radius:2px;
+  transition:0.3s;
+}
+
+/* Navigation */
+.main-nav {
+  display:flex;
+  gap:24px;
+}
+.main-nav a {
+  color:#e2e8f0;
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.main-nav a:hover {
+  color:#60a5fa;
+}
+
+/* ========== Mobile Anpassung ========== */
+@media (max-width: 900px){
+  .menu-toggle {
+    display:flex;
+  }
+  .main-nav {
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:70%;
+    height:100%;
+    background:rgba(17,24,39,0.97);
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:28px;
+    transition:right 0.3s ease;
+    z-index:1000;
+  }
+  .main-nav.open {
+    right:0;
+  }
+
+  /* Animation Hamburger -> X */
+  .menu-toggle.open span:nth-child(1) {
+    transform:rotate(45deg) translateY(8px);
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity:0;
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform:rotate(-45deg) translateY(-8px);
+  }
+}
+</style>
+
