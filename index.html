@@ -629,15 +629,58 @@ footer a{color:#cfe0ff}
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="container" style="padding:40px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;font-size:14px">
-      <div><div class="flex center gap-3"><div class="logo" style="height:32px;width:32px"></div><b>Iron-Coaching by Tim Eicholz</b></div><p class="muted" style="margin-top:10px">PLATZHALTER: Kurzer Footer-Text über Ihre Praxis.</p></div>
-      <div><b>Kontakt</b><ul class="muted" style="list-style:none;padding:0;margin:10px 0 0"><li>✉️ maxtim241@gmail.com</li></ul></div>
-      <div><b>Schnellzugriff</b><ul style="list-style:none;padding:0;margin:10px 0 0"><li><a class="muted" href="#team">Über mich</a></li><li><a class="muted" href="#leistungen">Leistungen</a></li><li><a class="muted" href="#kontakt">Kontakt & Instagram</a></li></ul></div>
-      <div><b>Rechtliches</b><ul style="list-style:none;padding:0;margin:10px 0 0"><li><a class="muted" href="#impressum">Impressum (PLATZHALTER)</a></li><li><a class="muted" href="#datenschutz">Datenschutz (PLATZHALTER)</a></li></ul></div>
+ <footer>
+  <div class="container" style="padding:40px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;font-size:14px;align-items:start;">
+    
+    <!-- Logo + Beschreibung -->
+    <div>
+      <div class="flex items-center gap-3" style="display:flex;align-items:center;">
+        <div class="logo" style="height:32px;width:32px;background:linear-gradient(135deg,#007bff,#00b4d8);border-radius:8px;"></div>
+        <b style="line-height:1;">Iron-Coaching by Tim Eichholz</b>
+      </div>
+      <p class="muted" style="margin-top:10px;">
+        Individuelles Training, klare Ernährungskonzepte und Coaching mit Leidenschaft – für sichtbare Erfolge und nachhaltige Motivation.
+      </p>
     </div>
-    <div style="border-top:1px solid var(--line);padding:14px 0;text-align:center" class="xs">© <span id="y"></span> Iron Coaching by Tim Eichholz – Alle Rechte vorbehalten.</div>
-  </footer>
+
+    <!-- Kontakt -->
+    <div>
+      <b>Kontakt</b>
+      <ul class="muted" style="list-style:none;padding:0;margin:10px 0 0;">
+        <li>✉️ <a href="mailto:maxtim241@gmail.com" style="color:#e2e8f0;text-decoration:none;">maxtim241@gmail.com</a></li>
+      </ul>
+    </div>
+
+    <!-- Schnellzugriff -->
+    <div>
+      <b>Schnellzugriff</b>
+      <ul style="list-style:none;padding:0;margin:10px 0 0;">
+        <li><a class="muted" href="#team">Über mich</a></li>
+        <li><a class="muted" href="#leistungen">Leistungen</a></li>
+        <li><a class="muted" href="#kontakt">Kontakt & Instagram</a></li>
+      </ul>
+    </div>
+
+    <!-- Rechtliches -->
+    <div>
+      <b>Rechtliches</b>
+      <ul style="list-style:none;padding:0;margin:10px 0 0;">
+        <li><a class="muted" href="#impressum">Impressum</a></li>
+        <li><a class="muted" href="#datenschutz">Datenschutz</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div style="border-top:1px solid var(--line);padding:14px 0;text-align:center" class="xs">
+    © <span id="y"></span> Iron Coaching by Tim Eichholz – Alle Rechte vorbehalten.
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</footer>
+
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
   
 <script>
