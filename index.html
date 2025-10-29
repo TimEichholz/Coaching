@@ -8,14 +8,14 @@
 <style>
 /* ===== Farb-Theme (edel-blau) ===== */
 :root{
-  --bg:#f6f9ff;          /* Seitenhintergrund leicht bläulich */
-  --surface:#ffffff;     /* Karten/Boxen */
-  --surface-2:#eef4ff;   /* zart blau für abgesetzte Bereiche */
-  --text:#0b1a3a;        /* Tintenblau */
-  --muted:#5b6f92;       /* Blau-Grau */
-  --brand:#1b6cff;       /* Akzentblau */
-  --brand2:#00b3ff;      /* Verlaufspartner/Türkis */
-  --line:#dbe7ff;        /* Linien hellblau */
+  --bg:#f6f9ff;          
+  --surface:#ffffff;     
+  --surface-2:#eef4ff;   
+  --text:#0b1a3a;        
+  --muted:#5b6f92;       
+  --brand:#1b6cff;       
+  --brand2:#00b3ff;      
+  --line:#dbe7ff;        
 }
 
 /* ===== Basics ===== */
@@ -29,34 +29,54 @@ body{
     radial-gradient(900px 500px at -10% 20%, rgba(0,179,255,.07), transparent 55%),
     var(--bg);
   line-height:1.5;
+  padding-top:120px; /* Platz für fixierte Topbar + Header */
 }
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .container{max-width:1120px;margin:0 auto;padding:0 16px}
-.topbar{background:#0b1a3a;color:#fff;font-size:14px}
-.flex{display:flex}.between{justify-content:space-between}.center{align-items:center}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.25rem}
+.flex{display:flex}.between{justify-content:space-between}.center{align-items:center}
+.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.25rem}
 
+/* ===== Topbar fixiert & transparent ===== */
+.topbar{
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:50;
+  background:rgba(11,26,58,0.85); /* leicht transparentes Dunkelblau */
+  backdrop-filter:blur(6px) saturate(1.2);
+  color:#fff;
+  font-size:14px;
+  padding:6px 0;
+}
+
+/* ===== Header fixiert & transparent ===== */
 header{
-  position:sticky;top:0;z-index:20;
-  backdrop-filter:saturate(1.1) blur(6px);
-  background:rgba(255,255,255,.85);
+  position:fixed;
+  top:36px; /* unter der Topbar */
+  left:0;
+  width:100%;
+  z-index:40;
+  backdrop-filter:blur(6px) saturate(1.2);
+  background:rgba(255,255,255,0.85);
   border-bottom:1px solid var(--line);
 }
-.logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
 
+/* Logo & Buttons */
+.logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
 .btn{background:var(--brand);color:#fff;border:0;border-radius:999px;padding:.7rem 1rem;font-weight:600;display:inline-flex;align-items:center}
 .btn.secondary{background:#e9f3ff;color:#0747a6;border:1px solid #bcd5ff}
 
+/* ===== Hero ===== */
 .hero{position:relative;overflow:hidden}
 .hero .bg{position:absolute;inset:0;z-index:-1}
-  
-/* edler, blauer Overlay-Verlauf im Hero */
-.hero .bg:before{content:"";position:absolute;inset:0;pointer-events:none;background:none;}
-
+.hero .bg:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:none;
 }
 
 h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0}
@@ -64,7 +84,6 @@ h2{font-size:clamp(24px,3vw,36px);margin:0}
 .muted{color:var(--muted)}
 
 .section{padding:64px 0}
-/* zart-blaue Sektionen */
 .section.alt{background:linear-gradient(180deg,var(--surface-2),#fff);border-block:1px solid var(--line)}
 
 .grid{display:grid;gap:20px}
@@ -87,180 +106,12 @@ footer{
 footer a{color:#cfe0ff}
 .sm{font-size:14px}.xs{font-size:12px;color:#94a3b8}
 
-@media (max-width:768px){nav{display:none}}
-
-/* ===== Team-Layout & Animation (deins, belassen) ===== */
-.team-wrap{display:grid;grid-template-columns:1fr 1.25fr;gap:32px;align-items:center}
-@media (max-width:900px){.team-wrap{grid-template-columns:1fr}}
-.fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease-out forwards}
-.fade-up.delay-1{animation-delay:.15s}
-.fade-up.delay-2{animation-delay:.3s}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.prose p{margin:0 0 14px}
-.prose .lead{font-size:18px;line-height:1.6;color:var(--text)}
-.prose .muted{color:var(--muted);font-size:16px}
-.profile-img{width:100%;height:520px;object-fit:cover;display:block}
-@media (max-width:900px){.profile-img{height:380px}}
-
-/* --- Leistungen (Layout) --- */
-.leistungen-wrap{
-  display:grid;
-  grid-template-columns:1.05fr 1fr;
-  gap:48px;
-  align-items:center;
+/* ===== Responsive ===== */
+@media (max-width:768px){
+  nav{display:none}
 }
-.leistungen-media{
-  border-radius:24px;
-  overflow:hidden;
-  background:linear-gradient(135deg,rgba(27,108,255,.12),transparent 60%);
-  box-shadow:0 10px 40px rgba(11,26,58,.15);
-}
-.leistungen-img{
-  width:100%; height:100%;
-  object-fit:cover; display:block;
-}
-.leistungen-content .lead{font-size:18px;line-height:1.6;color:var(--text)}
-.features{display:grid;gap:10px;margin:14px 0 0}
-.feature{display:flex;gap:10px;align-items:flex-start;color:var(--text)}
-.check{
-  height:26px;width:26px;border-radius:999px;flex:0 0 26px;
-  display:inline-flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:700;
-  box-shadow:0 4px 12px rgba(27,108,255,.25);
-}
-.statement{
-  margin-top:20px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:16px 18px;
-  background:#fff;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-}
-.statement .cta{white-space:nowrap}
-
-@media (max-width:900px){
-  .leistungen-wrap{grid-template-columns:1fr;gap:28px}
-  .statement{flex-direction:column;align-items:flex-start}
-}
-
-/* ===== Wenger-Style Sections (edles Blau + Schwarz) ===== */
-
-/* Utility */
-.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.kicker{color:var(--brand);font-weight:700}
-.lead-lg{font-size:clamp(18px,2.2vw,20px);line-height:1.7;color:var(--text)}
-.stack>*{margin:0}
-.stack>*+*{margin-top:14px}
-
-/* Zweispaltiges Layout */
-.split{
-  display:grid;
-  grid-template-columns:1.05fr 1fr;
-  gap:56px;
-  align-items:center;
-}
-@media (max-width:900px){
-  .split{grid-template-columns:1fr;gap:28px}
-}
-
-/* Medienrahmen mit edlem Look */
-.media-frame{
-  position:relative; border-radius:28px; overflow:hidden;
-  background:
-    radial-gradient(1000px 500px at 0% 0%, rgba(0,0,0,.15), transparent 60%),
-    linear-gradient(135deg, rgba(27,108,255,.14), rgba(0,0,0,.06));
-  box-shadow:0 18px 50px rgba(8,18,42,.25), inset 0 1px 0 rgba(255,255,255,.25);
-}
-.media-frame img{width:100%;height:100%;object-fit:cover;display:block}
-
-/* Statement/Info-Zeile */
-.inline-note{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:#fff;
-}
-@media (max-width:900px){.inline-note{flex-direction:column;align-items:flex-start}}
-
-/* Feature-Liste im Wenger-Look */
-.features.wenger{display:grid;gap:12px;margin-top:14px}
-.features.wenger .item{display:flex;gap:12px;align-items:flex-start}
-.badge-check{
-  height:28px;width:28px;border-radius:999px;flex:0 0 28px;
-  display:inline-flex;align-items:center;justify-content:center;
-  color:#fff;font-weight:800;
-  background:linear-gradient(135deg,#0e172e,#0b1a3a);
-  box-shadow:0 6px 16px rgba(0,0,0,.25), 0 0 0 2px rgba(27,108,255,.15) inset;
-}
-
-/* Abschnitt-Optiken */
-.section.wenger-light{
-  background:linear-gradient(180deg,#ffffff 0%, #f4f7ff 100%);
-  border-block:1px solid var(--line);
-}
-.section.wenger-dark{
-  background:linear-gradient(180deg,#0d111c,#0a1326);
-  color:#e6edff;
-  border-block:1px solid rgba(219,231,255,.08);
-}
-.section.wenger-dark .muted{color:#b6c5e6}
-.section.wenger-dark .inline-note{background:rgba(255,255,255,.06);border-color:rgba(219,231,255,.14);color:#e6edff}
-
-/* Typografieanpassungen */
-.wenger-h2{font-size:clamp(26px,3.2vw,38px);line-height:1.2;margin:0 0 8px}
-.wenger-h3{font-size:clamp(18px,2.5vw,22px);font-weight:700;margin:0 0 14px}
-
-  /* Kontakt-Section → dunkler Hintergrund wie „Über mich“ */
-#kontakt.section.wenger-dark{
-  background:linear-gradient(180deg,#0d111c,#0a1326);
-  color:#e6edff;
-  border-block:1px solid rgba(219,231,255,.08);
-}
-#kontakt.section.wenger-dark h2,
-#kontakt.section.wenger-dark h3{ color:#fff }
-#kontakt .muted{ color:#b6c5e6 }
-
-/* Formular bleibt hell & gut lesbar auf dunkel */
-#kontakt .contact-card{ background:rgba(255,255,255,.06); border-color:rgba(219,231,255,.14) }
-#kontakt .form input,#kontakt .form textarea{
-  background:rgba(255,255,255,.06); color:#e6edff; border-color:rgba(219,231,255,.18)
-}
-#kontakt .form input::placeholder,#kontakt .form textarea::placeholder{ color:#9fb2dc }
-#kontakt .form input:focus,#kontakt .form textarea:focus{
-  outline:none; border-color:rgba(0,179,255,.6); box-shadow:0 0 0 3px rgba(0,179,255,.18)
-}
-
-/* Instagram-Carousel */
-.ig-carousel{
-  position:relative; border-radius:22px; overflow:hidden;
-  border:1px solid rgba(219,231,255,.14);
-  background:linear-gradient(135deg, rgba(0,0,0,.45), rgba(0,0,0,.18));
-  box-shadow:0 18px 50px rgba(8,18,42,.35);
-  aspect-ratio:3/4;
-}
-.ig-track{
-  display:flex; height:100%; width:100%;
-  transition:transform .5s ease; will-change:transform;
-}
-.ig-slide{ min-width:100%; height:100% }
-.ig-slide img{ width:100%; height:100%; object-fit:cover; display:block }
-
-/* Pfeile */
-.ig-arrow{
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:42px; height:42px; border-radius:50%;
-  background:rgba(0,0,0,.5); color:#fff; border:1px solid rgba(255,255,255,.25);
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; backdrop-filter:blur(4px);
-  transition:background .2s, transform .2s;
-}
-.ig-arrow:hover{ background:rgba(0,0,0,.7); transform:translateY(-50%) scale(1.04) }
-.ig-arrow.left{ left:12px } .ig-arrow.right{ right:12px }
-
-/* kleine Punkt-Navigation (optional) */
-.ig-dots{ position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:8px }
-.ig-dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); }
-.ig-dot.active{ background:#fff }
-
 </style>
+
 
 <link rel="stylesheet" href="mobile-tweaks.css">
 
