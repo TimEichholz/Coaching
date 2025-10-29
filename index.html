@@ -529,99 +529,115 @@ footer a{color:#cfe0ff}
 
 
 <!-- Kontakt -->
+<!-- Styles für Symmetrie + Trennstrich -->
+<style>
+  #kontakt .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    position:relative;
+  }
+  /* Vertikaler, dezenter Divider */
+  #kontakt .v-divider{
+    position:absolute; top:0; bottom:0; left:50%;
+    width:1px;
+    background:linear-gradient(180deg, rgba(219,231,255,0), rgba(219,231,255,.20), rgba(219,231,255,0));
+    transform:translateX(-0.5px);
+    opacity:.8;
+    pointer-events:none;
+  }
+  /* Einheitliche Überschriften-Größe im Abschnitt */
+  #kontakt h2{ font-size:clamp(24px,3vw,36px); margin:0 0 12px 0; color:#fff; }
+  /* Mobil: 1-spaltig, Divider ausblenden */
+  @media (max-width: 900px){
+    #kontakt .two-col{ grid-template-columns:1fr; }
+    #kontakt .v-divider{ display:none; }
+  }
+</style>
+
 <section id="kontakt" class="section wenger-dark">
-  <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
+  <div class="container two-col">
+    <!-- Dekorative Mittel-Linie -->
+    <div class="v-divider" aria-hidden="true"></div>
+
     <!-- Linke Seite: Kontaktformular -->
-   <div>
-  <h2>Kontakt</h2>
+    <div>
+      <h2>Kontakt</h2>
 
-  <!-- Info-Kasten -->
-  <div class="card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
-    <p style="color:#cbd5e1; font-size:15px; line-height:1.6; margin-bottom:12px;">
-      Nutze das Formular unten, um mir eine Nachricht zu schicken – egal ob du Fragen zum Coaching, zur Trainingsplanung oder zu Ernährungskonzepten hast. Ich melde mich schnellstmöglich zurück.
-    </p>
-    <div class="flex gap-3" style="align-items:center; margin-top:8px;">
+      <!-- Info-Kasten -->
+      <div class="card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px;">
+        <p style="color:#cbd5e1; font-size:15px; line-height:1.6; margin:0;">
+          Nutze das Formular unten, um mir eine Nachricht zu schicken – egal ob du Fragen zum Coaching, zur Trainingsplanung oder zu Ernährungskonzepten hast. Ich melde mich schnellstmöglich zurück.
+        </p>
+      </div>
+
+      <!-- Kontaktformular -->
+      <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:24px">
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <input name="name" placeholder="Ihr Name *" required>
+          <input type="email" name="email" placeholder="Ihre E-Mail *" required>
+        </div>
+        <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
+        <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
+
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
+
+        <div class="xs" style="margin:8px 0 12px; color:#64748b;">
+          Mit dem Absenden akzeptierst du unsere Datenschutzhinweise. (PLATZHALTER)
+        </div>
+
+        <button type="submit" class="btn">Anfrage senden</button>
+        <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
+      </form>
+
+      <script>
+        const form = document.getElementById('kontakt-form');
+        const statusEl = document.getElementById('form-status');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          statusEl.textContent = 'Wird gesendet …';
+          const data = new FormData(form);
+          try {
+            const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+            if (res.ok) { window.location.href = 'danke.html'; }
+            else {
+              const json = await res.json().catch(() => ({}));
+              statusEl.textContent = json.errors
+                ? json.errors.map(err => err.message).join(', ')
+                : 'Senden fehlgeschlagen. Bitte versuche es später erneut.';
+            }
+          } catch (err) {
+            statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
+          }
+        });
+      </script>
     </div>
-  </div>
-
-  <!-- Kontaktformular -->
-  <form id="kontakt-form" action="https://formspree.io/f/xrboekle" method="POST" class="form" style="margin-top:24px">
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-      <input name="name" placeholder="Ihr Name *" required>
-      <input type="email" name="email" placeholder="Ihre E-Mail *" required>
-    </div>
-    <input style="margin-top:12px" name="phone" placeholder="Telefon (optional)">
-    <textarea style="margin-top:12px" name="message" placeholder="Ihre Nachricht *" required></textarea>
-
-    <input type="text" name="_gotcha" style="display:none">
-    <input type="hidden" name="_subject" value="Neue Anfrage über die Website">
-
-    <div class="xs" style="margin:8px 0 12px; color:#64748b;">
-      Mit dem Absenden akzeptierst du unsere Datenschutzhinweise. (PLATZHALTER)
-    </div>
-
-    <button type="submit" class="btn">Anfrage senden</button>
-    <div id="form-status" class="xs" style="margin-top:8px;color:#64748b"></div>
-  </form>
-
-  <script>
-    const form = document.getElementById('kontakt-form');
-    const statusEl = document.getElementById('form-status');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusEl.textContent = 'Wird gesendet …';
-      const data = new FormData(form);
-      try {
-        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-        if (res.ok) { window.location.href = 'danke.html'; }
-        else {
-          const json = await res.json().catch(() => ({}));
-          statusEl.textContent = json.errors
-            ? json.errors.map(err => err.message).join(', ')
-            : 'Senden fehlgeschlagen. Bitte versuche es später erneut.';
-        }
-      } catch (err) {
-        statusEl.textContent = 'Netzwerkfehler. Bitte später erneut versuchen.';
-      }
-    });
-  </script>
-</div>
-
-
 
     <!-- Rechte Seite: Instagram -->
-    
- <div>
-      <h3 style="margin:0 0 6px 0">Instagram</h3>
-      <p class="muted">Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.</p>
+    <div>
+      <h2>Instagram</h2>
+      <p class="muted" style="margin:0 0 12px 0;">
+        Schau gerne auf meinem Instagram vorbei – dort bekommst du noch mehr Einblicke und Motivation rund um Training & Coaching.
+      </p>
 
       <!-- Klickbares Instagram-Bild -->
       <a href="https://www.instagram.com/t.eichholz/" target="_blank" 
-         style="display:block;position:relative;overflow:hidden;border-radius:16px;margin-top:16px;">
+         style="display:block;position:relative;overflow:hidden;border-radius:16px;margin-top:4px;">
         <img src="Pose4.jpeg" alt="Tim Eichholz – Bühnenfoto" style="width:100%;height:auto;display:block;border-radius:16px;">
-
         <!-- Instagram-Logo als Overlay -->
-        <div style="
-          position:absolute;
-          bottom:16px;
-          right:16px;
-          background:rgba(0,0,0,0.6);
-          border-radius:50%;
-          padding:10px;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          transition:background 0.3s;
-        ">
+        <div style="position:absolute;bottom:16px;right:16px;background:rgba(0,0,0,0.6);border-radius:50%;padding:10px;display:flex;align-items:center;justify-content:center;transition:background .3s;">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram Logo" style="width:26px;height:26px;filter:invert(1);">
         </div>
       </a>
     </div>
   </div>
-
-
-
 </section>
+
+
+
+
+
 
 
  
