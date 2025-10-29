@@ -165,3 +165,49 @@ header nav { display:flex !important; }
 @media (max-width: 900px){
   .menu-toggle span{ background:#ffffff !important; }
 }
+
+/* ==== Mobile-Menu layering & layout fix ==== */
+@media (max-width: 900px){
+  /* Reihenfolge: Topbar < Header < Overlay < Nav */
+  .topbar{ z-index: 900; position: relative; }
+  header{ z-index: 1000; }
+  .nav-overlay{ z-index: 1100; }
+  header .main-nav{ z-index: 1200; }
+
+  /* Menü wirklich Vollbild (verdeckt die Topbar) */
+  header .main-nav{
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    transform: translateX(100%);      /* Start: komplett draußen */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    padding: 24px;
+    background: rgba(11,26,58,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform .3s ease;
+    pointer-events: none;              /* keine Klicks wenn zu */
+  }
+  header .main-nav.open{
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Links im Drawer gut sichtbar & touch-freundlich */
+  header .main-nav a{
+    color: #fff !important;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* Burger auf dunkel sichtbar */
+  .menu-toggle span{ background:#fff !important; }
+}
+
+/* Wenn Menü offen: Topbar ausblenden, damit nichts „oben rausguckt“ */
+html.nav-open .topbar{ display: none !important; }
+
