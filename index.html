@@ -1,26 +1,23 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Iron-Coaching by Tim Eichholz – Personal Training & Coaching</title>
-  
-<style>
+<html lang="de"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width,initial-scale=1" /> <title>Iron-Coaching by Tim Eichholz – Personal Training & Coaching</title> <style>
 /* ===== Farb-Theme (edel-blau) ===== */
 :root{
-  --bg:#f6f9ff;          /* Seitenhintergrund leicht bläulich */
-  --surface:#ffffff;     /* Karten/Boxen */
-  --surface-2:#eef4ff;   /* zart blau für abgesetzte Bereiche */
-  --text:#0b1a3a;        /* Tintenblau */
-  --muted:#5b6f92;       /* Blau-Grau */
-  --brand:#1b6cff;       /* Akzentblau */
-  --brand2:#00b3ff;      /* Verlaufspartner/Türkis */
-  --line:#dbe7ff;        /* Linien hellblau */
+  --bg:#f6f9ff;
+  --surface:#ffffff;
+  --surface-2:#eef4ff;
+  --text:#0b1a3a;
+  --muted:#5b6f92;
+  --brand:#1b6cff;
+  --brand2:#00b3ff;
+  --line:#dbe7ff;
+
+  /* NEU: feste Höhen */
+  --header-h:64px;   /* Höhe deines Headers */
+  --topbar-h:40px;   /* Höhe der Topbar (oben) */
 }
 
 /* ===== Basics ===== */
 *{box-sizing:border-box}
-/* Basis */
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
@@ -30,8 +27,8 @@ body{
     radial-gradient(900px 500px at -10% 20%, rgba(0,179,255,.07), transparent 55%),
     var(--bg);
   line-height:1.5;
-  /* WICHTIG: Platz für Topbar + Header schaffen */
-  padding-top: calc(var(--header-h) + 50px);
+  /* Platz für Topbar + Header */
+  padding-top: calc(var(--header-h) + var(--topbar-h));
 }
 html { scroll-behavior: smooth; }
 
@@ -52,17 +49,23 @@ img{max-width:100%;display:block}
   font-size:14px;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
+/* WICHTIG: feste Höhe statt vertikalem Padding */
+.topbar .container{
+  height: var(--topbar-h);
+  padding: 0 16px;                     /* nur horizontal */
+  display:flex; justify-content:space-between; align-items:center;
+}
 
-/* Header: fixiert, unter der Topbar */
+/* Header: fixiert, exakt unter der Topbar */
 header{
   position: fixed;
-  top: 40px; /* exakt die Höhe der Topbar */
+  top: var(--topbar-h);
   left: 0; right: 0;
   z-index: 1000;
-  background: rgba(10,20,40,0.20);
+  background: rgba(10,20,40,.20);
   backdrop-filter: blur(12px) saturate(1.1);
   -webkit-backdrop-filter: blur(12px) saturate(1.1);
-  border-bottom:1px solid rgba(255,255,255,0.10);
+  border-bottom:1px solid rgba(255,255,255,.10);
 }
 
 .logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
@@ -289,7 +292,7 @@ footer a{color:#cfe0ff}
   
   <!-- Topbar -->
 <div class="topbar">
-  <div class="container flex between center" style="padding:8px 16px">
+  <div class="container flex between center"> <!-- kein vertikales Padding -->
     <div class="flex center gap-2">
       <a href="https://www.instagram.com/t.eichholz/" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;">
         <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px;height:20px;filter:invert(1)">
