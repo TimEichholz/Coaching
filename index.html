@@ -326,23 +326,45 @@ footer a{color:#cfe0ff}
   </div>
 
   <!-- Header -->
-  <header>
-    <div class="container flex between center" style="padding:16px 0">
-      <a class="flex center gap-3" href="#">
-        <div class="logo"></div>
-        <div>
-          <div style="font-weight:700">Iron-Coaching by Tim Eichholz</div>
-          <div class="xs">Personal Training & Coaching</div>
-        </div>
-      </a>
-      <nav class="flex center gap-6 sm">
-        <a href="#team">Über mich</a>
-        <a href="#leistungen">Leistungen</a>
-        <a href="#kontakt">Kontakt & Instagram</a>
-        <a class="btn" href="#kontakt">Termin vereinbaren</a>
-      </nav>
-    </div>
-  </header>
+ <header>
+  <div class="container flex between center" style="padding:16px 0">
+    <a class="flex center gap-3" href="#">
+      <div class="logo"></div>
+      <div>
+        <div style="font-weight:700">Iron-Coaching by Tim Eichholz</div>
+        <div class="xs">Personal Training & Coaching</div>
+      </div>
+    </a>
+    <nav class="flex center gap-6 sm">
+      <a href="#team">Über mich</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#kontakt">Kontakt & Instagram</a>
+      <a class="btn" href="#kontakt">Termin vereinbaren</a>
+    </nav>
+
+    <!-- 🍔 Burger-Menü-Button: Nur auf Mobil sichtbar -->
+    <button id="menu-toggle"
+            class="burger md-hide"
+            aria-label="Menü öffnen"
+            aria-controls="mobile-menu"
+            aria-expanded="false">☰</button>
+
+  </div>
+</header>
+  
+<!-- Overlay und mobiles Menü -->
+<div class="menu-overlay" id="menu-overlay" hidden></div>
+
+<nav class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <button class="close" id="close-menu" aria-label="Menü schließen">×</button>
+
+  <!-- dieselben Ziele wie im Desktop-NAV -->
+  <a href="#team">Über mich</a>
+  <a href="#leistungen">Leistungen</a>
+  <a href="#kontakt">Kontakt & Instagram</a>
+  <a href="#kontakt" class="cta">Termin vereinbaren</a>
+</nav>
+
 
  <!-- Hero -->
 <section class="hero" style="height:90vh; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:white;">
@@ -875,6 +897,51 @@ footer a{color:#cfe0ff}
       startX = null;
     }
   }, { passive: true });
+})();
+</script>
+<script>
+(function () {
+  const toggle = document.getElementById('menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  const close  = document.getElementById('close-menu');
+  const ovl    = document.getElementById('menu-overlay');
+
+  if (!toggle || !menu || !ovl) return;
+
+  function openMenu() {
+    menu.classList.add('open');
+    ovl.classList.add('open');
+    ovl.hidden = false;
+    menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // Scroll lock
+  }
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    ovl.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    // Overlay erst nach Transition wirklich verstecken
+    setTimeout(() => { if (!ovl.classList.contains('open')) ovl.hidden = true; }, 300);
+  }
+
+  toggle.addEventListener('click', openMenu);
+  close?.addEventListener('click', closeMenu);
+  ovl.addEventListener('click', closeMenu);
+
+  // Beim Klick auf einen Menülink: schließen
+  menu.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    closeMenu();
+  });
+
+  // Escape zum Schließen
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  });
 })();
 </script>
 
