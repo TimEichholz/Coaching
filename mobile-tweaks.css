@@ -167,6 +167,23 @@ html { -webkit-text-size-adjust: 100%; }
   }
 }
 
+/* === Mobile: Footer-Spalten & Links zentrieren === */
+@media (max-width: 600px){
+  footer .container{
+    text-align: center !important;
+  }
+  footer .container > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  footer .container ul{
+    text-align: center;
+    padding: 0;
+  }
+}
+
+
 
 
 
