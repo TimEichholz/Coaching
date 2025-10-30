@@ -29,9 +29,9 @@ html { -webkit-text-size-adjust: 100%; }
   .topbar span { display:none; }
 }
 
-/* Navigation already hidden at 768px; ensure CTA visible */
+/* Navigation: nur Desktop-Navigation auf Mobil ausblenden */
 @media (max-width: 768px){
-  nav { display:none !important; }
+  .desktop-nav { display: none !important; }
 }
 
 /* Hero */
@@ -145,15 +145,6 @@ html { -webkit-text-size-adjust: 100%; }
 .mobile-menu a{
   display:block; padding:12px 10px; font-weight:600; font-size:16px;
   color:var(--text); border-radius:10px;
-}
-.mobile-menu a:hover{ background:#eef4ff; }
-.mobile-menu a.cta{
-  background:var(--brand); color:#fff; text-align:center; margin-top:6px;
-}
-@media (min-width: 769px){
-  /* Drawer/Overlay auf Desktop verstecken */
-  .menu-overlay{ display:none; }
-  .mobile-menu{ display:none; }
 }
 
 
