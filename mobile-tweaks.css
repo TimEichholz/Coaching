@@ -147,6 +147,27 @@ html { -webkit-text-size-adjust: 100%; }
   color:var(--text); border-radius:10px;
 }
 
+/* === Mobile: Header-Brand zentrieren & Burger positionieren === */
+@media (max-width: 768px){
+  header .container{
+    position: relative;
+    justify-content: center !important; /* überschreibt .flex.between */
+  }
+  /* das linke Brand-Element (Logo + Text) mittig */
+  header .container > a.flex{
+    margin: 0 auto;
+    text-align: center;
+  }
+  /* Burger rechts „frei schwebend“, damit die Mitte frei bleibt */
+  header .burger{
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
 
 
 
