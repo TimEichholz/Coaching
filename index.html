@@ -949,6 +949,80 @@ footer a{color:#cfe0ff}
 })();
 </script>
 
+<!-- Cookie/Consent Banner -->
+<div id="cookie-banner" style="display:none;">
+  <div class="cb-inner">
+    <div class="cb-text">
+      Wir verwenden nur technisch notwendige Cookies. 
+      Optionale Dienste (z. B. Analytics) werden erst nach deiner Einwilligung geladen.
+      Mehr Infos: <a href="datenschutz.html" target="_self">Datenschutzerklärung</a>.
+    </div>
+    <div class="cb-actions">
+      <button id="cb-decline" class="cb-btn ghost">Nur notwendige</button>
+      <button id="cb-accept"  class="cb-btn">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+  <script>
+(function(){
+  const KEY = 'consent'; // 'all' oder 'necessary'
+  const banner = document.getElementById('cookie-banner');
+  const accept = document.getElementById('cb-accept');
+  const decline = document.getElementById('cb-decline');
+
+  // Helper: optionale Dienste aktivieren (hier platzierst du z.B. Analytics)
+  function enableOptionalServices(){
+    // === Beispiel: Google Analytics erst nach Consent laden ===
+    // const GA_ID = 'G-XXXXXXX';
+    // const s1 = document.createElement('script');
+    // s1.async = true; s1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    // document.head.appendChild(s1);
+    // const s2 = document.createElement('script');
+    // s2.innerHTML = `
+    //   window.dataLayer = window.dataLayer || [];
+    //   function gtag(){dataLayer.push(arguments);}
+    //   gtag('js', new Date()); gtag('config', '${GA_ID}');
+    // `;
+    // document.head.appendChild(s2);
+  }
+
+  function hideBanner(){ banner.style.display = 'none'; }
+  function showBanner(){ banner.style.display = 'block'; }
+
+  // Start: prüfen, ob bereits eine Entscheidung existiert
+  const stored = localStorage.getItem(KEY);
+  if (!stored){ showBanner(); }
+  else if (stored === 'all'){ enableOptionalServices(); }
+
+  accept?.addEventListener('click', function(){
+    localStorage.setItem(KEY, 'all');
+    enableOptionalServices();
+    hideBanner();
+  });
+  decline?.addEventListener('click', function(){
+    localStorage.setItem(KEY, 'necessary');
+    hideBanner();
+  });
+
+  // Optional: Einen "Cookie-Einstellungen" Link im Footer anbieten
+  const manageLink = document.createElement('a');
+  manageLink.textContent = 'Cookie-Einstellungen';
+  manageLink.href = '#';
+  manageLink.style.marginLeft = '8px';
+  manageLink.addEventListener('click', function(e){
+    e.preventDefault();
+    // Entscheidung zurücksetzen und Banner wieder anzeigen
+    localStorage.removeItem(KEY);
+    showBanner();
+  });
+  // Füge den Link neben „Datenschutz“ im Footer an (wenn vorhanden)
+  const legalLists = document.querySelectorAll('footer a[href*="datenschutz"]');
+  if (legalLists.length){
+    legalLists[legalLists.length-1].parentElement.appendChild(manageLink);
+  }
+})();
+</script>
 
 </body>
 </html>
