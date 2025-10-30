@@ -183,6 +183,10 @@ html { -webkit-text-size-adjust: 100%; }
   }
 }
 
+/* Anker-Offset für sticky Header */
+section[id]{ scroll-margin-top: 72px; }
+
+
 
 
 
